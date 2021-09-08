@@ -7,9 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A2A755BB26E8C5F700578F92 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A755B726E8C5F700578F92 /* LibraryViewController.swift */; };
+		A2A755BC26E8C5F700578F92 /* LibraryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A755B926E8C5F700578F92 /* LibraryCollectionView.swift */; };
+		A2A755BD26E8C5F700578F92 /* LibraryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A755BA26E8C5F700578F92 /* LibraryCell.swift */; };
+		A2A755BE26E8CAA300578F92 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A755B726E8C5F700578F92 /* LibraryViewController.swift */; };
+		A2A755BF26E8CAA400578F92 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A755B726E8C5F700578F92 /* LibraryViewController.swift */; };
+		A2A755C026E8CAAA00578F92 /* LibraryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A755B926E8C5F700578F92 /* LibraryCollectionView.swift */; };
+		A2A755C126E8CAAB00578F92 /* LibraryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A755B926E8C5F700578F92 /* LibraryCollectionView.swift */; };
+		A2A755C226E8CAAD00578F92 /* LibraryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A755BA26E8C5F700578F92 /* LibraryCell.swift */; };
+		A2A755C326E8CAAE00578F92 /* LibraryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A755BA26E8C5F700578F92 /* LibraryCell.swift */; };
 		A2DA8D2C26E2631F004387F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA8D2B26E2631F004387F4 /* AppDelegate.swift */; };
 		A2DA8D2E26E2631F004387F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA8D2D26E2631F004387F4 /* SceneDelegate.swift */; };
-		A2DA8D3026E2631F004387F4 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA8D2F26E2631F004387F4 /* LibraryViewController.swift */; };
 		A2DA8D3526E2631F004387F4 /* MemeGenerator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A2DA8D3326E2631F004387F4 /* MemeGenerator.xcdatamodeld */; };
 		A2DA8D3726E26323004387F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2DA8D3626E26323004387F4 /* Assets.xcassets */; };
 		A2DA8D3A26E26323004387F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2DA8D3826E26323004387F4 /* LaunchScreen.storyboard */; };
@@ -18,9 +26,7 @@
 		A2DA8D5D26E263CE004387F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA8D2B26E2631F004387F4 /* AppDelegate.swift */; };
 		A2DA8D5E26E263CF004387F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA8D2B26E2631F004387F4 /* AppDelegate.swift */; };
 		A2DA8D5F26E263D3004387F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA8D2D26E2631F004387F4 /* SceneDelegate.swift */; };
-		A2DA8D6026E263D3004387F4 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA8D2F26E2631F004387F4 /* LibraryViewController.swift */; };
 		A2DA8D6126E263D3004387F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA8D2D26E2631F004387F4 /* SceneDelegate.swift */; };
-		A2DA8D6226E263D3004387F4 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA8D2F26E2631F004387F4 /* LibraryViewController.swift */; };
 		A2DA8D6426E283E6004387F4 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A2DA8D6326E283E6004387F4 /* .swiftlint.yml */; };
 		A2DA8D6626E28417004387F4 /* ToDo.md in Resources */ = {isa = PBXBuildFile; fileRef = A2DA8D6526E28417004387F4 /* ToDo.md */; };
 /* End PBXBuildFile section */
@@ -43,10 +49,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A2A755B726E8C5F700578F92 /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		A2A755B926E8C5F700578F92 /* LibraryCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryCollectionView.swift; sourceTree = "<group>"; };
+		A2A755BA26E8C5F700578F92 /* LibraryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryCell.swift; sourceTree = "<group>"; };
 		A2DA8D2826E2631F004387F4 /* MemeGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2DA8D2B26E2631F004387F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2DA8D2D26E2631F004387F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A2DA8D2F26E2631F004387F4 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		A2DA8D3426E2631F004387F4 /* MemeGenerator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MemeGenerator.xcdatamodel; sourceTree = "<group>"; };
 		A2DA8D3626E26323004387F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2DA8D3926E26323004387F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -86,6 +94,88 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A2A755AE26E80B3100578F92 /* App and Scene Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				A2DA8D2B26E2631F004387F4 /* AppDelegate.swift */,
+				A2DA8D2D26E2631F004387F4 /* SceneDelegate.swift */,
+			);
+			path = "App and Scene Delegate";
+			sourceTree = "<group>";
+		};
+		A2A755AF26E80B6600578F92 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A2DA8D3B26E26323004387F4 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A2A755B026E80B6A00578F92 /* Local Persistance */ = {
+			isa = PBXGroup;
+			children = (
+				A2DA8D3326E2631F004387F4 /* MemeGenerator.xcdatamodeld */,
+			);
+			path = "Local Persistance";
+			sourceTree = "<group>";
+		};
+		A2A755B126E80B7400578F92 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				A2DA8D3826E26323004387F4 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		A2A755B226E80B7800578F92 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A2DA8D3626E26323004387F4 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A2A755B326E80E1E00578F92 /* Source Code */ = {
+			isa = PBXGroup;
+			children = (
+				A2A755B526E8C5F700578F92 /* Library */,
+			);
+			path = "Source Code";
+			sourceTree = "<group>";
+		};
+		A2A755B426E80E8300578F92 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		A2A755B526E8C5F700578F92 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				A2A755B626E8C5F700578F92 /* Controller */,
+				A2A755B826E8C5F700578F92 /* View */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		A2A755B626E8C5F700578F92 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A2A755B726E8C5F700578F92 /* LibraryViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A2A755B826E8C5F700578F92 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A2A755B926E8C5F700578F92 /* LibraryCollectionView.swift */,
+				A2A755BA26E8C5F700578F92 /* LibraryCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		A2DA8D1F26E2631F004387F4 = {
 			isa = PBXGroup;
 			children = (
@@ -111,13 +201,13 @@
 		A2DA8D2A26E2631F004387F4 /* MemeGenerator */ = {
 			isa = PBXGroup;
 			children = (
-				A2DA8D2B26E2631F004387F4 /* AppDelegate.swift */,
-				A2DA8D2D26E2631F004387F4 /* SceneDelegate.swift */,
-				A2DA8D2F26E2631F004387F4 /* LibraryViewController.swift */,
-				A2DA8D3626E26323004387F4 /* Assets.xcassets */,
-				A2DA8D3826E26323004387F4 /* LaunchScreen.storyboard */,
-				A2DA8D3B26E26323004387F4 /* Info.plist */,
-				A2DA8D3326E2631F004387F4 /* MemeGenerator.xcdatamodeld */,
+				A2A755AE26E80B3100578F92 /* App and Scene Delegate */,
+				A2A755B426E80E8300578F92 /* Constants */,
+				A2A755B326E80E1E00578F92 /* Source Code */,
+				A2A755B026E80B6A00578F92 /* Local Persistance */,
+				A2A755B226E80B7800578F92 /* Resources */,
+				A2A755B126E80B7400578F92 /* Storyboards */,
+				A2A755AF26E80B6600578F92 /* Supporting Files */,
 			);
 			path = MemeGenerator;
 			sourceTree = "<group>";
@@ -292,8 +382,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2DA8D2C26E2631F004387F4 /* AppDelegate.swift in Sources */,
-				A2DA8D3026E2631F004387F4 /* LibraryViewController.swift in Sources */,
+				A2A755BC26E8C5F700578F92 /* LibraryCollectionView.swift in Sources */,
+				A2A755BD26E8C5F700578F92 /* LibraryCell.swift in Sources */,
 				A2DA8D3526E2631F004387F4 /* MemeGenerator.xcdatamodeld in Sources */,
+				A2A755BB26E8C5F700578F92 /* LibraryViewController.swift in Sources */,
 				A2DA8D2E26E2631F004387F4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,7 +396,9 @@
 			files = (
 				A2DA8D5D26E263CE004387F4 /* AppDelegate.swift in Sources */,
 				A2DA8D4526E26324004387F4 /* MemeGeneratorTests.swift in Sources */,
-				A2DA8D6026E263D3004387F4 /* LibraryViewController.swift in Sources */,
+				A2A755C026E8CAAA00578F92 /* LibraryCollectionView.swift in Sources */,
+				A2A755C226E8CAAD00578F92 /* LibraryCell.swift in Sources */,
+				A2A755BE26E8CAA300578F92 /* LibraryViewController.swift in Sources */,
 				A2DA8D5F26E263D3004387F4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,7 +409,9 @@
 			files = (
 				A2DA8D5E26E263CF004387F4 /* AppDelegate.swift in Sources */,
 				A2DA8D5026E26324004387F4 /* MemeGeneratorUITests.swift in Sources */,
-				A2DA8D6226E263D3004387F4 /* LibraryViewController.swift in Sources */,
+				A2A755C126E8CAAB00578F92 /* LibraryCollectionView.swift in Sources */,
+				A2A755C326E8CAAE00578F92 /* LibraryCell.swift in Sources */,
+				A2A755BF26E8CAA400578F92 /* LibraryViewController.swift in Sources */,
 				A2DA8D6126E263D3004387F4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -470,7 +566,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GQ92PTQY7M;
-				INFOPLIST_FILE = MemeGenerator/Info.plist;
+				INFOPLIST_FILE = "MemeGenerator/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -489,7 +585,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GQ92PTQY7M;
-				INFOPLIST_FILE = MemeGenerator/Info.plist;
+				INFOPLIST_FILE = "MemeGenerator/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
