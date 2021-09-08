@@ -7,11 +7,11 @@
 
 import UIKit
 
-final class LibraryCell: UICollectionViewCell {
+final class MemeCell: UICollectionViewCell {
     
     // MARK: Variables
     
-    static let identifier = "libraryCell"
+    static let identifier = "MemeCell"
     
     // TODO: Image
     
