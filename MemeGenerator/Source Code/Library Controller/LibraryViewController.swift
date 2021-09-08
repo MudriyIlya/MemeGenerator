@@ -11,12 +11,12 @@ final class LibraryViewController: UIViewController {
 
     // MARK: - Variables
     
-    private lazy var listCollectionView: LibraryCollectionView = {
-        let collectionView = LibraryCollectionView()
+    private lazy var listCollectionView: MemeCollectionView = {
+        let collectionView = MemeCollectionView()
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(LibraryCell.self, forCellWithReuseIdentifier: LibraryCell.identifier)
+        collectionView.register(MemeCell.self, forCellWithReuseIdentifier: MemeCell.identifier)
         return collectionView
     }()
         
@@ -25,7 +25,7 @@ final class LibraryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .cyan
-        title = "Каталог"
+        title = "Твои мемасики"
         setupList()
     }
     
@@ -46,19 +46,26 @@ final class LibraryViewController: UIViewController {
 
 extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 9
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LibraryCell.identifier,
-                                                            for: indexPath) as? LibraryCell else { return LibraryCell() }
-        cell.configureCell(UIImage(systemName: "circle"), title: "мем №1")
-        print(cell.bounds.size)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MemeCell.identifier,
+                                                            for: indexPath) as? MemeCell else { return MemeCell() }
+        if indexPath.section == 0 && indexPath.row == 0 {
+            cell.configureCell(UIImage(systemName: "plus.circle"), title: "")
+        } else {
+            cell.configureCell(UIImage(systemName: "circle"), title: "мем №1")
+            
+        }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == 0 && indexPath.row == 0 {
+            let topMemeController = TopMemesViewController()
+            navigationController?.pushViewController(topMemeController, animated: true)
+        }
     }
 }
