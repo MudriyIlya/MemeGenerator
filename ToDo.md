@@ -10,10 +10,10 @@
 - [ ] Использовать KeyChain/UserDefaults для пользовательских настроек
 - [x] Использование Swift styleguides (Google styleguides)
 - [x] Не использовать сторонние библиотеки (кроме snapshot-тестов)
-- [ ] Использовать сеть
+- [x] Использовать сеть
 - [ ] Отображение медиа (аудио, видео, изображения) из сети
 - [ ] Минимальное количество экранов: 3
-- [ ] Обязательно использовать UINavigationController/TabBarController
+- [x] Обязательно использовать UINavigationController/TabBarController
 - [x] Deployment Target: iOS 13
 - [ ] Покрытие модульными тестами 10% и более
 - [ ] Хотя бы один UI-тест через page object

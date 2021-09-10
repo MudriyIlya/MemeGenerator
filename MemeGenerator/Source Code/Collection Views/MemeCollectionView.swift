@@ -11,14 +11,12 @@ final class MemeCollectionView: UICollectionView {
     
     // MARK: Properties
     
-    private let inset: CGFloat = 5.0
+    private let inset: CGFloat = 3.0
     
     // MARK: Initialization
     
     convenience init() {
         self.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewLayout())
-        setupView()
-        setupLibraryLayout()
     }
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
@@ -41,7 +39,7 @@ final class MemeCollectionView: UICollectionView {
     // MARK: Compositional Layout
     
     private func setupLibraryLayout() {
-
+        
         // Item
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
                                               heightDimension: .fractionalHeight(1))
@@ -57,8 +55,15 @@ final class MemeCollectionView: UICollectionView {
         let section = NSCollectionLayoutSection(group: nestedGroup)
         section.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
         
+        // Header
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(40))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+                                                                 elementKind: UICollectionView.elementKindSectionHeader,
+                                                                 alignment: .top)
+        section.boundarySupplementaryItems = [header]
+        
         let collectionCompositionalLayout = UICollectionViewCompositionalLayout(section: section)
         setCollectionViewLayout(collectionCompositionalLayout, animated: false)
     }
-
+    
 }
