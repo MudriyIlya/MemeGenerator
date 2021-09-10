@@ -21,10 +21,15 @@ struct MemesCollection {
     func countCategories() -> Int {
         return allMemes.keys.count
     }
+    
+    func countMemes(in category: Category) -> Int {
+        guard let memesFromCategory = allMemes[category.current] else { return 0 }
+        return memesFromCategory.count
+    }
 
     func allCategories() -> [Category] {
         return Array(allMemes.keys.map { key in
-            return Category(current: key)
+            return Category(key)
         }).sorted { $0.current < $1.current }
     }
     
@@ -33,8 +38,12 @@ struct MemesCollection {
         return memes
     }
     
-    func getMeme(in category: Category, for index: Int) -> Meme? {
+    func meme(in category: Category, for index: Int) -> Meme? {
         guard let memesFromCategory = allMemes[category.current] else { return nil }
-        return memesFromCategory[index]
+        if index < memesFromCategory.count {
+            return memesFromCategory[index]
+        } else {
+            return nil
+        }   
     }
 }
