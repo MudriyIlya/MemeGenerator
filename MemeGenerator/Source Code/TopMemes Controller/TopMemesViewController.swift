@@ -76,7 +76,7 @@ final class TopMemesViewController: UIViewController {
     
     private func dataMapper(_ response: [MemeDataResponse]) {
         response.forEach { memeData in
-            let newMeme = Meme(id: memeData.id, category: Category(current: memeData.category), imageURL: memeData.imageURL)
+            let newMeme = Meme(id: memeData.id, category: Category(memeData.category), imageURL: memeData.imageURL)
             self.memesData.append(newMeme, for: newMeme.category)
         }
         DispatchQueue.main.async { [weak self] in

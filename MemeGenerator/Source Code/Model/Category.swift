@@ -7,4 +7,8 @@
 
 struct Category {
     var current: String
+    
+    init(_ category: String) {
+        self.current = category
+    }
 }
