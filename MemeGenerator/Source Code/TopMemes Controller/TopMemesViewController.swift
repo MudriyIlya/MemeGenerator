@@ -121,20 +121,17 @@ extension TopMemesViewController: UICollectionViewDelegate, UICollectionViewData
         
         if let memes = memesData.memes(in: categories[indexPath.section]) {
             var imageToMemeCell: UIImage?
-            
-            cell.contentView.startSpinner()
+//            cell.contentView.startSpinner()
             networkService.loadMemeImage(imageURL: memes[indexPath.row].imageURL) { data in
-                if let unwrappedData = data {
-                    imageToMemeCell = UIImage(data: unwrappedData)
-                    DispatchQueue.main.async { cell.contentView.stopSpinner() }
+                DispatchQueue.main.async {
+                    guard let data = data else { return }
+                    imageToMemeCell = UIImage(data: data)
+                    guard let imageToMemeCell = imageToMemeCell else { return }
+                    cell.setImage(image: imageToMemeCell)
+//                    DispatchQueue.main.async { cell.contentView.stopSpinner() }
                 }
             }
-            cell.configureCell(imageToMemeCell, title: "")
         }
-        
-        
-        
-
         return cell
     }
     
