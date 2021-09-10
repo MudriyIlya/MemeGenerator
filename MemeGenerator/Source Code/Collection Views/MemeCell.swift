@@ -77,9 +77,14 @@ final class MemeCell: UICollectionViewCell {
         self.title.text = title
     }
     
+    override func prepareForReuse() {
+        self.imageView.image = nil
+        self.title.text = ""
+    }
+    
     // Image methods
     
-    func setImage(image: UIImage) {
+    func setImage(image: UIImage? = nil) {
         imageView.image = image
     }
     
