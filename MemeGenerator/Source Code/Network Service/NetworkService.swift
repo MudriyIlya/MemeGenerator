@@ -26,7 +26,8 @@ extension NetworkService: NetworkServiceProtocol {
     
     func getMemes(completion: @escaping (MemesAPIResponse) -> Void) {
         // 1
-        let components = URLComponents(string: MemesAPI.baseURL)
+        let urlString = MemesAPI.baseURL + MemesAPI.EndPoint.APIPath
+        let components = URLComponents(string: urlString)
         guard let url = components?.url else { return completion(.failure(.unknown)) }
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethods.get
@@ -48,9 +49,13 @@ extension NetworkService: NetworkServiceProtocol {
         session.dataTask(with: request, completionHandler: handler).resume()
     }
     
-    func loadMemeImage(imageURL: String, completion: @escaping (Data?) -> Void) {
+    func loadMemeImage(imageURL: String, thumb: Bool = false, completion: @escaping (Data?) -> Void) {
         // 1
-        guard let url = URL(string: imageURL) else { return completion(nil) }
+        var urlString = MemesAPI.baseURL
+        if thumb { urlString += MemesAPI.EndPoint.imageThumbPath }
+        urlString += imageURL
+        guard let url = URL(string: urlString) else { return completion(nil) }
+        print(url)
         let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
         
         let handler: Handler = { data, response, error in

@@ -11,5 +11,5 @@ typealias MemesAPIResponse = Result<[MemeDataResponse], NetworkServiceError>
 
 protocol NetworkServiceProtocol {
     func getMemes(completion: @escaping (MemesAPIResponse) -> Void)
-    func loadMemeImage(imageURL: String, completion: @escaping (Data?) -> Void)
+    func loadMemeImage(imageURL: String, thumb: Bool, completion: @escaping (Data?) -> Void)
 }

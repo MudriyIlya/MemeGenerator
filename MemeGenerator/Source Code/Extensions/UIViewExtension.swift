@@ -7,28 +7,34 @@
 
 import UIKit
 
-private var spinner: UIView?
-
 extension UIView {
     
     // MARK: Loader extension for Views
     
     func startSpinner() {
-        spinner = UIView(frame: bounds)
-        spinner?.backgroundColor = UIColor(white: 0, alpha: 0.2)
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.tag = 777
+        spinner.startAnimating()
         
-        let activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator.center = center
-        activityIndicator.startAnimating()
-        guard let spinner = spinner else { return }
-        
-        spinner.addSubview(activityIndicator)
         addSubview(spinner)
+        NSLayoutConstraint.activate([
+            spinner.topAnchor.constraint(equalTo: self.topAnchor),
+            spinner.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            spinner.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            spinner.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        ])
     }
     
     func stopSpinner() {
-        spinner?.removeFromSuperview()
-        spinner = nil
+        subviews.forEach {
+            if $0.tag == 777 { $0.removeFromSuperview() }
+        }
     }
     
+    // MARK: Set Opaque
+    func setOpaqueBackground() {
+        alpha = 1.0
+        backgroundColor = Constants.defaultBackgroundColor
+    }
 }
