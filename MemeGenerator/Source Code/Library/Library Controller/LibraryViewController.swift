@@ -68,6 +68,11 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
         if indexPath.section == 0 && indexPath.row == 0 {
             let topMemeController = TopMemesViewController()
             navigationController?.pushViewController(topMemeController, animated: true)
+        } else {
+            // TODO: брать картинку из массива мемов
+            guard let image = UIImage(systemName: "pencil") else { return }
+            let previewViewController = PreviewViewController(withImage: image)
+            navigationController?.pushViewController(previewViewController, animated: true)
         }
     }
 }

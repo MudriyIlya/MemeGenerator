@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Для создания Мема с фото, сделанным с помощью камеры, приложению требуется доступ к &quot;Камере&quot;. Разрешить доступ?</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Для создания Мема с фото из библиотеки приложению требуется доступ к &quot;Фото&quot;. Разрешить доступ?</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Для сохранения твоего Мема в галерею требуется доступ к &quot;Фото&quot;. Разрешить доступ?</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
