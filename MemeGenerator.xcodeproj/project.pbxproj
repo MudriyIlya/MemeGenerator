@@ -59,6 +59,15 @@
 		A2A7566126ECDD8D00578F92 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A7566026ECDD8C00578F92 /* UIImageViewExtension.swift */; };
 		A2A7566226ECDD8D00578F92 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A7566026ECDD8C00578F92 /* UIImageViewExtension.swift */; };
 		A2A7566326ECDD8D00578F92 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A7566026ECDD8C00578F92 /* UIImageViewExtension.swift */; };
+		A2A7566526ED2E6100578F92 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A7566426ED2E6100578F92 /* PreviewViewController.swift */; };
+		A2A7566626ED2E6100578F92 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A7566426ED2E6100578F92 /* PreviewViewController.swift */; };
+		A2A7566726ED2E6100578F92 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A7566426ED2E6100578F92 /* PreviewViewController.swift */; };
+		A2A7566926ED2EC000578F92 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A7566826ED2EC000578F92 /* EditViewController.swift */; };
+		A2A7566A26ED2EC000578F92 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A7566826ED2EC000578F92 /* EditViewController.swift */; };
+		A2A7566B26ED2EC000578F92 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A7566826ED2EC000578F92 /* EditViewController.swift */; };
+		A2A7567126ED2FAD00578F92 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A7567026ED2FAD00578F92 /* Preview.swift */; };
+		A2A7567226ED2FAD00578F92 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A7567026ED2FAD00578F92 /* Preview.swift */; };
+		A2A7567326ED2FAD00578F92 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A7567026ED2FAD00578F92 /* Preview.swift */; };
 		A2DA8D2C26E2631F004387F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA8D2B26E2631F004387F4 /* AppDelegate.swift */; };
 		A2DA8D2E26E2631F004387F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA8D2D26E2631F004387F4 /* SceneDelegate.swift */; };
 		A2DA8D3526E2631F004387F4 /* MemeGenerator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A2DA8D3326E2631F004387F4 /* MemeGenerator.xcdatamodeld */; };
@@ -110,6 +119,9 @@
 		A2A7562126EA648000578F92 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		A2A7565E26EBA48F00578F92 /* MemesCollectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemesCollectionTests.swift; sourceTree = "<group>"; };
 		A2A7566026ECDD8C00578F92 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		A2A7566426ED2E6100578F92 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
+		A2A7566826ED2EC000578F92 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		A2A7567026ED2FAD00578F92 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		A2DA8D2826E2631F004387F4 /* MemeGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2DA8D2B26E2631F004387F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2DA8D2D26E2631F004387F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -199,10 +211,11 @@
 				A2A755B426E80E8300578F92 /* Constants */,
 				A2A755EF26E950E900578F92 /* Network Service */,
 				A2A755DE26E9443B00578F92 /* Extensions */,
-				A2A755D526E93FF100578F92 /* Model */,
 				A2A755B826E8C5F700578F92 /* Collection Views */,
-				A2A755B526E8C5F700578F92 /* Library Controller */,
-				A2A755C426E914F000578F92 /* TopMemes Controller */,
+				A2A7566F26ED2F2900578F92 /* Library */,
+				A2A7566E26ED2F1E00578F92 /* Top Memes */,
+				A2A7566C26ED2F0700578F92 /* Preview */,
+				A2A7566D26ED2F0F00578F92 /* Edit */,
 			);
 			path = "Source Code";
 			sourceTree = "<group>";
@@ -233,12 +246,12 @@
 			path = "Collection Views";
 			sourceTree = "<group>";
 		};
-		A2A755C426E914F000578F92 /* TopMemes Controller */ = {
+		A2A755C426E914F000578F92 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				A2A755C626E914F000578F92 /* TopMemesViewController.swift */,
 			);
-			path = "TopMemes Controller";
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		A2A755D526E93FF100578F92 /* Model */ = {
@@ -271,6 +284,56 @@
 				A2A755F026EA1D5800578F92 /* HTTPMethods.swift */,
 			);
 			path = "Network Service";
+			sourceTree = "<group>";
+		};
+		A2A7566C26ED2F0700578F92 /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				A2A7567426ED2FB200578F92 /* View */,
+				A2A7567526ED2FC400578F92 /* Controller */,
+			);
+			path = Preview;
+			sourceTree = "<group>";
+		};
+		A2A7566D26ED2F0F00578F92 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				A2A7566826ED2EC000578F92 /* EditViewController.swift */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
+		A2A7566E26ED2F1E00578F92 /* Top Memes */ = {
+			isa = PBXGroup;
+			children = (
+				A2A755D526E93FF100578F92 /* Model */,
+				A2A755C426E914F000578F92 /* Controller */,
+			);
+			path = "Top Memes";
+			sourceTree = "<group>";
+		};
+		A2A7566F26ED2F2900578F92 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				A2A755B526E8C5F700578F92 /* Library Controller */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		A2A7567426ED2FB200578F92 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A2A7567026ED2FAD00578F92 /* Preview.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A2A7567526ED2FC400578F92 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A2A7566426ED2E6100578F92 /* PreviewViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		A2DA8D1F26E2631F004387F4 = {
@@ -480,6 +543,7 @@
 			files = (
 				A2DA8D2C26E2631F004387F4 /* AppDelegate.swift in Sources */,
 				A2A755CE26E91C7E00578F92 /* Meme.swift in Sources */,
+				A2A7566526ED2E6100578F92 /* PreviewViewController.swift in Sources */,
 				A2A755DB26E9443600578F92 /* UIViewExtension.swift in Sources */,
 				A2A755E426E94E5300578F92 /* MemesResponse.swift in Sources */,
 				A2A755F526EA2ED000578F92 /* UIViewControllerExtension.swift in Sources */,
@@ -489,6 +553,7 @@
 				A2A755F126EA1D5800578F92 /* HTTPMethods.swift in Sources */,
 				A2A755BD26E8C5F700578F92 /* MemeCell.swift in Sources */,
 				A2A7566126ECDD8D00578F92 /* UIImageViewExtension.swift in Sources */,
+				A2A7567126ED2FAD00578F92 /* Preview.swift in Sources */,
 				A2DA8D3526E2631F004387F4 /* MemeGenerator.xcdatamodeld in Sources */,
 				A2A755CA26E914F000578F92 /* TopMemesViewController.swift in Sources */,
 				A2A755EC26E950E200578F92 /* NetworkService.swift in Sources */,
@@ -497,6 +562,7 @@
 				A2A755FD26EA373B00578F92 /* MemesCollection.swift in Sources */,
 				A2A755E026E94D2E00578F92 /* NetworkServiceProtocol.swift in Sources */,
 				A2DA8D2E26E2631F004387F4 /* SceneDelegate.swift in Sources */,
+				A2A7566926ED2EC000578F92 /* EditViewController.swift in Sources */,
 				A2A755D226E93FCC00578F92 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,11 +581,14 @@
 				A2A7565F26EBA48F00578F92 /* MemesCollectionTests.swift in Sources */,
 				A2A7566226ECDD8D00578F92 /* UIImageViewExtension.swift in Sources */,
 				A2A755F226EA1D5800578F92 /* HTTPMethods.swift in Sources */,
+				A2A7567226ED2FAD00578F92 /* Preview.swift in Sources */,
 				A2A755E526E94E5300578F92 /* MemesResponse.swift in Sources */,
 				A2A755C026E8CAAA00578F92 /* MemeCollectionView.swift in Sources */,
 				A2A755C226E8CAAD00578F92 /* MemeCell.swift in Sources */,
 				A2A7561F26EA489B00578F92 /* Category.swift in Sources */,
 				A2A755BE26E8CAA300578F92 /* LibraryViewController.swift in Sources */,
+				A2A7566626ED2E6100578F92 /* PreviewViewController.swift in Sources */,
+				A2A7566A26ED2EC000578F92 /* EditViewController.swift in Sources */,
 				A2A7565D26EB9B2C00578F92 /* TopMemesViewController.swift in Sources */,
 				A2DA8D5F26E263D3004387F4 /* SceneDelegate.swift in Sources */,
 				A2A7562326EA648000578F92 /* SectionHeader.swift in Sources */,
@@ -535,6 +604,7 @@
 			files = (
 				A2A755E226E94D2E00578F92 /* NetworkServiceProtocol.swift in Sources */,
 				A2A755EA26E94E7A00578F92 /* NetworkServiceError.swift in Sources */,
+				A2A7566726ED2E6100578F92 /* PreviewViewController.swift in Sources */,
 				A2A755F726EA2ED000578F92 /* UIViewControllerExtension.swift in Sources */,
 				A2A755DD26E9443600578F92 /* UIViewExtension.swift in Sources */,
 				A2DA8D5E26E263CF004387F4 /* AppDelegate.swift in Sources */,
@@ -544,6 +614,7 @@
 				A2A755E626E94E5300578F92 /* MemesResponse.swift in Sources */,
 				A2A755C126E8CAAB00578F92 /* MemeCollectionView.swift in Sources */,
 				A2A7566326ECDD8D00578F92 /* UIImageViewExtension.swift in Sources */,
+				A2A7567326ED2FAD00578F92 /* Preview.swift in Sources */,
 				A2A755C326E8CAAE00578F92 /* MemeCell.swift in Sources */,
 				A2A7562026EA489B00578F92 /* Category.swift in Sources */,
 				A2A755BF26E8CAA400578F92 /* LibraryViewController.swift in Sources */,
@@ -552,6 +623,7 @@
 				A2A7562426EA648000578F92 /* SectionHeader.swift in Sources */,
 				A2A755FF26EA373B00578F92 /* MemesCollection.swift in Sources */,
 				A2A755EE26E950E200578F92 /* NetworkService.swift in Sources */,
+				A2A7566B26ED2EC000578F92 /* EditViewController.swift in Sources */,
 				A2A755D426E93FCC00578F92 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
