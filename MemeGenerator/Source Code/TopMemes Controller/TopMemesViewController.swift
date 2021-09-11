@@ -12,7 +12,7 @@ final class TopMemesViewController: UIViewController {
     // MARK: - Variables
     
     private lazy var topMemesCollectionView: MemeCollectionView = {
-        let collectionView = MemeCollectionView()
+        let collectionView = MemeCollectionView(enableHeader: true)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -46,11 +46,11 @@ final class TopMemesViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.systemGray2
         title = "Выбери шаблон"
+        loadDataFromServer()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        loadDataFromServer()
     }
     
     override func viewWillLayoutSubviews() {
@@ -116,21 +116,9 @@ extension TopMemesViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MemeCell.identifier,
                                                             for: indexPath) as? MemeCell else { return MemeCell() }
-        
         let categories = memesData.allCategories()
-        
         if let memes = memesData.memes(in: categories[indexPath.section]) {
-            var imageToMemeCell: UIImage?
-//            cell.contentView.startSpinner()
-            networkService.loadMemeImage(imageURL: memes[indexPath.row].imageURL) { data in
-                DispatchQueue.main.async {
-                    guard let data = data else { return }
-                    imageToMemeCell = UIImage(data: data)
-                    guard let imageToMemeCell = imageToMemeCell else { return }
-                    cell.setImage(image: imageToMemeCell)
-//                    DispatchQueue.main.async { cell.contentView.stopSpinner() }
-                }
-            }
+            cell.configureCell(with: memes[indexPath.row])
         }
         return cell
     }

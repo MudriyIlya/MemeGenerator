@@ -15,14 +15,19 @@ final class MemeCollectionView: UICollectionView {
     
     // MARK: Initialization
     
+    convenience init(enableHeader header: Bool) {
+        self.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewLayout())
+        setupLibraryLayout(enableHeader: header)
+    }
+    
     convenience init() {
         self.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewLayout())
+        setupLibraryLayout(enableHeader: false)
     }
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         setupView()
-        setupLibraryLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -38,7 +43,7 @@ final class MemeCollectionView: UICollectionView {
     
     // MARK: Compositional Layout
     
-    private func setupLibraryLayout() {
+    private func setupLibraryLayout(enableHeader header: Bool) {
         
         // Item
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
@@ -55,12 +60,14 @@ final class MemeCollectionView: UICollectionView {
         let section = NSCollectionLayoutSection(group: nestedGroup)
         section.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
         
-        // Header
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(40))
-        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
-                                                                 elementKind: UICollectionView.elementKindSectionHeader,
-                                                                 alignment: .top)
-        section.boundarySupplementaryItems = [header]
+        if header {
+            // Header
+            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(40))
+            let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+                                                                     elementKind: UICollectionView.elementKindSectionHeader,
+                                                                     alignment: .top)
+            section.boundarySupplementaryItems = [header]
+        }
         
         let collectionCompositionalLayout = UICollectionViewCompositionalLayout(section: section)
         setCollectionViewLayout(collectionCompositionalLayout, animated: false)

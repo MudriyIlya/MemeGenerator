@@ -13,7 +13,7 @@ final class MemeCell: UICollectionViewCell {
     
     static let identifier = "MemeCell"
     
-    // TODO: Image
+    // Image
     
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
@@ -23,7 +23,7 @@ final class MemeCell: UICollectionViewCell {
         return imageView
     }()
     
-    // TODO: Title
+    // Title
     
     private lazy var title: UILabel = {
         let label = UILabel()
@@ -41,7 +41,7 @@ final class MemeCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.white
+        setOpaqueBackground()
         setupConstraints()
     }
     
@@ -73,13 +73,21 @@ final class MemeCell: UICollectionViewCell {
     // MARK: Configuration
     
     func configureCell(_ image: UIImage?, title: String) {
+        setOpaqueBackground()
         self.imageView.image = image
         self.title.text = title
     }
     
+    func configureCell(with meme: Meme) {
+        setOpaqueBackground()
+        imageView.downloadThumbImageFromServer(by: meme.imageURL)
+        title.text = ""
+    }
+    
     override func prepareForReuse() {
-        self.imageView.image = nil
-        self.title.text = ""
+        setOpaqueBackground()
+        imageView.image = nil
+        title.text = ""
     }
     
     // Image methods
