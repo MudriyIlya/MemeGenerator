@@ -11,6 +11,10 @@ final class PreviewViewController: UIViewController {
 
     // MARK: Variables
     
+    private lazy var imageForNavigationBarBackground: UIImage = {
+        return UIImage()
+    }()
+    
     private lazy var preview: Preview = {
         let view = Preview()
         return view
@@ -41,8 +45,8 @@ final class PreviewViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .top, barMetrics: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.setBackgroundImage(imageForNavigationBarBackground, for: .top, barMetrics: .default)
+        self.navigationController?.navigationBar.shadowImage = imageForNavigationBarBackground
         self.navigationController?.navigationBar.isTranslucent = true
     }
     

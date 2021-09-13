@@ -7,14 +7,11 @@
 
 import UIKit
 
-class Preview: UIView {
+final class Preview: UIView {
     
     // MARK: - VARIABLES
-    // MARK: Callbacks
-    //    var imageTap: (() -> Void)?
-//        var saveButtonTap: (() -> Void)?
+    // MARK: Meme
     
-    // MARK: Demotivator
     private lazy var meme: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -25,6 +22,7 @@ class Preview: UIView {
     }()
     
     // MARK: - Lifecycle
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -36,6 +34,7 @@ class Preview: UIView {
     }
     
     // MARK: - Constraints
+    
     private func updateUI() {
         addSubview(meme)
         NSLayoutConstraint.activate([
@@ -47,6 +46,7 @@ class Preview: UIView {
     }
     
     // MARK: - Image methods
+    
     func setMeme(_ meme: UIImage) {
         self.meme.image = meme
     }

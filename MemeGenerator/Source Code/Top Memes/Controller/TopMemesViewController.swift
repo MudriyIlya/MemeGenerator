@@ -142,4 +142,13 @@ extension TopMemesViewController: UICollectionViewDelegate, UICollectionViewData
             return UICollectionReusableView()
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let categories = memesData.allCategories()
+        if let memes = memesData.memes(in: categories[indexPath.section]) {
+            let meme = memes[indexPath.row]
+            let editViewController = EditViewController(withMeme: meme)
+            navigationController?.pushViewController(editViewController, animated: true)
+        }
+    }
 }
