@@ -10,13 +10,13 @@ import UIKit
 extension UIImageView {
     
     func downloadFullImageFromServer(by nameURL: String) {
-//        startSpinner()
+        startSpinner()
         NetworkService().loadMemeImage(imageURL: nameURL, thumb: false) { [weak self] data in
             DispatchQueue.main.async {
                 guard let self = self,
                       let data = data else { return }
                 self.image = UIImage(data: data)
-//                self.stopSpinner()
+                self.stopSpinner()
             }
         }
     }
