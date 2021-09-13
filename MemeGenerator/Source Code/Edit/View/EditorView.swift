@@ -36,7 +36,7 @@ final class EditorView: UIView {
     private lazy var addTextButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-//        button.accessibilityIdentifier = "Add Text Button"
+        //        button.accessibilityIdentifier = "Add Text Button"
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(addTextButtonTapped), for: .touchUpInside)
@@ -58,6 +58,16 @@ final class EditorView: UIView {
         return button
     }()
     
+    private lazy var trash: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = UIColor.clear
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(systemName: "trash")
+        imageView.isHidden = true
+        return imageView
+    }()
+    
     private(set) lazy var centerMemeX = imageView.centerXAnchor
     private(set) lazy var centerMemeY = imageView.centerYAnchor
     
@@ -71,6 +81,7 @@ final class EditorView: UIView {
         super.init(frame: .zero)
         backgroundColor = UIColor.systemGray4
         updateUI()
+        prepareTrash()
     }
     
     // MARK: - Constraints
@@ -98,6 +109,16 @@ final class EditorView: UIView {
         ])
     }
     
+    private func prepareTrash() {
+        addSubview(trash)
+        NSLayoutConstraint.activate([
+            trash.widthAnchor.constraint(equalToConstant: 44),
+            trash.heightAnchor.constraint(equalTo: trash.widthAnchor),
+            trash.centerXAnchor.constraint(equalTo: centerXAnchor),
+            trash.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20)
+        ])
+    }
+    
     // MARK: - Buttons
     
     @objc func addTextButtonTapped() {
@@ -107,13 +128,13 @@ final class EditorView: UIView {
     @objc func addImageButtonTapped() {
         // TODO: image from PHOTO
         let newImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        enablePinch(newImageView)
+        enableRotation(newImageView)
+        enableDragging(newImageView)
         newImageView.isUserInteractionEnabled = true
         newImageView.center = imageView.center
-        newImageView.enablePinch()
-        newImageView.enableRotation()
-        newImageView.enableDragging()
         newImageView.backgroundColor = UIColor.random()
-        imageView.addSubview(newImageView)
+        addSubview(newImageView)
     }
     
     // MARK: - Image methods
@@ -123,15 +144,85 @@ final class EditorView: UIView {
     }
     
     func addLabelWith(_ text: NSAttributedString) {
-        let label = UILabel()
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
+        enablePinch(label)
+        enableRotation(label)
+        enableDragging(label)
+        label.center = center
         label.isUserInteractionEnabled = true
-        label.enablePinch()
-        label.enableRotation()
-        label.enableDragging()
-        label.backgroundColor = .random()
+//        label.backgroundColor = .random()
         label.numberOfLines = 0
         label.attributedText = text
         label.sizeToFit()
-        imageView.addSubview(label)
+        addSubview(label)
+    }
+    
+    func deleteView(_ view: UIView) {
+        if view.frame.intersects(trash.frame) {
+            UIView.animate(withDuration: 0.3) {
+                view.alpha = 0
+                view.removeFromSuperview()
+            }
+        }
+    }
+}
+
+// MARK: - Movement
+
+extension EditorView {
+    
+    // MARK: Dragging
+    
+    func enableDragging(_ view: UIView) {
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
+        view.addGestureRecognizer(pan)
+    }
+    
+    @objc private func handlePan(_ gesture: UIPanGestureRecognizer) {
+        guard let gestureView = gesture.view else { return }
+        switch gesture.state {
+        case .began, .changed:
+            trash.isHidden = false
+            moveViewWithPan(gestureView, gesture: gesture)
+        case .ended:
+            deleteView(gestureView)
+            trash.isHidden = true
+        default:
+            break
+        }
+    }
+    
+    private func moveViewWithPan(_ view: UIView, gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: view)
+        view.center = CGPoint(x: view.center.x + translation.x,
+                              y: view.center.y + translation.y)
+        gesture.setTranslation(CGPoint.zero, in: view)
+    }
+    
+    // MARK: Pinch
+    
+    func enablePinch(_ view: UIView) {
+        let pinch = UIPinchGestureRecognizer(target: self, action: #selector(handlePinch(_:)))
+        view.addGestureRecognizer(pinch)
+    }
+    
+    @objc private func handlePinch(_ gesture: UIPinchGestureRecognizer) {
+        guard let gestureView = gesture.view else { return }
+        gestureView.transform = gestureView.transform.scaledBy(x: gesture.scale,
+                                                               y: gesture.scale)
+        gesture.scale = 1
+    }
+    
+    // MARK: Rotation
+    
+    func enableRotation(_ view: UIView) {
+        let rotate = UIRotationGestureRecognizer(target: self, action: #selector(handleRotate(_:)))
+        view.addGestureRecognizer(rotate)
+    }
+    
+    @objc private func handleRotate(_ gesture: UIRotationGestureRecognizer) {
+        guard let gestureView = gesture.view else { return }
+        gestureView.transform = gestureView.transform.rotated(by: gesture.rotation)
+        gesture.rotation = 0
     }
 }

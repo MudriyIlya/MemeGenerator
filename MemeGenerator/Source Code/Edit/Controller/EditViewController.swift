@@ -24,7 +24,7 @@ final class EditViewController: UIViewController {
         //        textView.backgroundColor = UIColor.clear
         textView.backgroundColor = UIColor.random()
         textView.textAlignment = .center
-        textView.text = "Шутейки писать тут"
+        textView.text = ""
         textView.isHidden = true
         return textView
     }()
@@ -60,7 +60,12 @@ final class EditViewController: UIViewController {
         addTextButtonTapped()
         let tap = UITapGestureRecognizer(target: self, action: #selector(stopTexting))
         view.addGestureRecognizer(tap)
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // TODO: удалить это, чтобы картинка подгружалась из инета при
+        // загрузке экрана через инит, а это только хардкод
+        editor.downloadMemeFromServer("people07.png")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -101,6 +106,7 @@ final class EditViewController: UIViewController {
     private func addText() {
         textViewBackground.isHidden = false
         textView.isHidden = false
+        textView.text = "Жги 🔥"
         textView.becomeFirstResponder()
     }
     
@@ -111,7 +117,10 @@ final class EditViewController: UIViewController {
     }
     
     @objc func stopTexting() {
-        editor.addLabelWith(self.textView.attributedText)
+        if !textView.attributedText.isEqual(to: NSAttributedString(string: "")) {
+            editor.addLabelWith(self.textView.attributedText)
+        }
+        textView.attributedText = NSAttributedString(string: "")
         hideKeyboard()
     }
 }
@@ -132,13 +141,7 @@ extension EditViewController: UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        textView.text = nil
+//        textView.insertTextPlaceholder(with: )
+//        textView.text = nil
     }
-    
-//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-//        if text == "\n" {
-//            return false
-//        }
-//        return true
-//    }
 }
