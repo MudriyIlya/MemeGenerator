@@ -20,7 +20,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        let navigationController = UINavigationController(rootViewController: LibraryViewController())
         let navigationController = UINavigationController(rootViewController: EditViewController())
         window?.rootViewController = navigationController
-//        window?.rootViewController = TestViewController()
         window?.makeKeyAndVisible()
     }
     
