@@ -92,7 +92,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.cellForRow(at: indexPath) as? SettingTableViewCell else { return }
         guard let theme = Theme(rawValue: indexPath.row) else { return }
         theme.setActive()
-        cell.checkmarkButtonTapped()
+        cell.checkmarkTapped()
         tableView.reloadData()
     }
 }

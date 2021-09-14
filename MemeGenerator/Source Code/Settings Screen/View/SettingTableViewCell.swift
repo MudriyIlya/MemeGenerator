@@ -14,6 +14,11 @@ final class SettingTableViewCell: UITableViewCell {
     static let identifier = "SettingCell"
     
     private var isChecked = false
+    private struct DoneButton {
+        static let filled = UIImage(systemName: "circle.fill")
+        static let empty = UIImage(systemName: "circle")
+        private init() { }
+    }
     
     private lazy var title: UILabel = {
         let label = UILabel()
@@ -24,11 +29,12 @@ final class SettingTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var checkmark: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(checkmarkButtonTapped), for: .touchUpInside)
-        return button
+    private lazy var checkmarkImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.isUserInteractionEnabled = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
     }()
     
     // MARK: - Initialization
@@ -52,19 +58,19 @@ final class SettingTableViewCell: UITableViewCell {
     
     override func updateConstraints() {
         contentView.addSubview(title)
-        contentView.addSubview(checkmark)
+        contentView.addSubview(checkmarkImage)
         NSLayoutConstraint.activate([
             title.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             title.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
             title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
-            title.trailingAnchor.constraint(equalTo: checkmark.leadingAnchor)
+            title.trailingAnchor.constraint(equalTo: checkmarkImage.leadingAnchor)
         ])
         NSLayoutConstraint.activate([
-            checkmark.widthAnchor.constraint(equalToConstant: 40),
-            checkmark.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            checkmark.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
-            checkmark.leadingAnchor.constraint(equalTo: title.trailingAnchor),
-            checkmark.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5)
+            checkmarkImage.widthAnchor.constraint(equalToConstant: 40),
+            checkmarkImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            checkmarkImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
+            checkmarkImage.leadingAnchor.constraint(equalTo: title.trailingAnchor),
+            checkmarkImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5)
         ])
         super.updateConstraints()
     }
@@ -90,20 +96,20 @@ final class SettingTableViewCell: UITableViewCell {
     
     public func setCheckmark(_ checkmark: Bool) {
         if checkmark {
-            self.checkmark.setTitle("✅", for: .normal)
+            checkmarkImage.image = DoneButton.filled
             isChecked = false
         } else {
-            self.checkmark.setTitle("⚪️", for: .normal)
+            checkmarkImage.image = DoneButton.empty
             isChecked = true
         }
     }
     
-    @objc func checkmarkButtonTapped() {
+    @objc func checkmarkTapped() {
         if isChecked {
-            self.checkmark.setTitle("⚪️", for: .normal)
+            checkmarkImage.image = DoneButton.empty
             isChecked = false
         } else {
-            self.checkmark.setTitle("✅", for: .normal)
+            checkmarkImage.image = DoneButton.filled
             isChecked = true
         }
     }
