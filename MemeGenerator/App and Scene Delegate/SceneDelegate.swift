@@ -7,6 +7,8 @@
 
 import UIKit
 
+let themeWindow = ThemeWindow()
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
@@ -16,10 +18,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
+        themeWindow.makeKey()
         window = UIWindow(windowScene: windowScene)
-//        let navigationController = UINavigationController(rootViewController: LibraryViewController())
-        let navigationController = UINavigationController(rootViewController: EditViewController())
+        let navigationController = UINavigationController(rootViewController: LibraryViewController())
+//        let navigationController = UINavigationController(rootViewController: SettingsViewController())
         window?.rootViewController = navigationController
+        window?.initTheme()
         window?.makeKeyAndVisible()
     }
     

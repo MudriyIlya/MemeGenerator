@@ -9,11 +9,11 @@ import UIKit
 
 final class MemeCollectionView: UICollectionView {
     
-    // MARK: Properties
+    // MARK: - Variables
     
-    private let inset: CGFloat = 3.0
+    private let inset = Constants.collectionCellInset
     
-    // MARK: Initialization
+    // MARK: - Initialization
     
     convenience init(enableHeader header: Bool) {
         self.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewLayout())
@@ -25,23 +25,23 @@ final class MemeCollectionView: UICollectionView {
         setupLibraryLayout(enableHeader: false)
     }
     
-    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
+    private override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
-        setupView()
+        setupCollection()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: Setup Collection View
+    // MARK: - Setup Collection View
     
-    private func setupView() {
-        backgroundColor = UIColor.clear
+    private func setupCollection() {
+        backgroundColor = UIColor.Palette.backgroundColor
         showsVerticalScrollIndicator = false
     }
     
-    // MARK: Compositional Layout
+    // MARK: - Compositional Layout
     
     private func setupLibraryLayout(enableHeader header: Bool) {
         
@@ -60,8 +60,8 @@ final class MemeCollectionView: UICollectionView {
         let section = NSCollectionLayoutSection(group: nestedGroup)
         section.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
         
+        // Header
         if header {
-            // Header
             let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(40))
             let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
                                                                      elementKind: UICollectionView.elementKindSectionHeader,
@@ -72,5 +72,4 @@ final class MemeCollectionView: UICollectionView {
         let collectionCompositionalLayout = UICollectionViewCompositionalLayout(section: section)
         setCollectionViewLayout(collectionCompositionalLayout, animated: false)
     }
-    
 }
