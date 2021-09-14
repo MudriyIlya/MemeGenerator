@@ -55,9 +55,7 @@ extension NetworkService: NetworkServiceProtocol {
         if thumb { urlString += MemesAPI.EndPoint.imageThumbPath }
         urlString += imageURL
         guard let url = URL(string: urlString) else { return completion(nil) }
-        print(url)
         let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
-        
         let handler: Handler = { data, response, error in
             do {
                 let data = try self.httpResponse(data: data, response: response)
@@ -66,7 +64,6 @@ extension NetworkService: NetworkServiceProtocol {
                 completion(nil)
             }
         }
-        
         session.dataTask(with: request, completionHandler: handler).resume()
     }
     
