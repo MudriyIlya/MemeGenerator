@@ -15,6 +15,8 @@ extension UIView {
         let spinner = UIActivityIndicatorView(style: .large)
         spinner.translatesAutoresizingMaskIntoConstraints = false
         spinner.tag = 777
+        #warning("цвет чувака")
+        spinner.color = .black
         spinner.startAnimating()
         
         addSubview(spinner)
