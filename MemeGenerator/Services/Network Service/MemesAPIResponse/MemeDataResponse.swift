@@ -4,6 +4,7 @@
 //
 //  Created by Илья Мудрый on 08.09.2021.
 //
+
 import Foundation
 
 struct MemeDataResponse: Decodable {

@@ -24,6 +24,7 @@ final class TopMemesViewController: UIViewController {
     }()
     
     private var networkService: NetworkServiceProtocol
+    private var coreDataService: CoreDataServiceProtocol
     private var memesData = MemesCollection()
     
     // MARK: - Initialization
@@ -34,6 +35,7 @@ final class TopMemesViewController: UIViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.networkService = NetworkService()
+        self.coreDataService = CoreDataService()
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
@@ -77,25 +79,48 @@ final class TopMemesViewController: UIViewController {
             guard let self = self else { return }
             switch result {
             case .success(let responseData):
-                self.dataMapper(responseData)
+                self.prepareDataForUI(responseData)
             case .failure(let error):
                 DispatchQueue.main.async {
-                    self.showErrorAlert(with: error.message)
                     self.view.stopSpinner()
+                    self.showErrorAlert(with: error.message)
+                    self.coreDataService.getMemesFromDatabase(completion: { memeResponse in
+                        switch memeResponse {
+                        case .success(let coreDataResult):
+                            self.prepareMemesFromCoreDataForUI(coreDataResult)
+                        case .failure(let coreDataError):
+                            print("Ошибка загрузки мемов из CoreData \(coreDataError)")
+                        }
+                    })
                 }
             }
         }
     }
     
-    private func dataMapper(_ response: [MemeDataResponse]) {
+    private func prepareDataForUI(_ response: [MemeDataResponse]) {
+        var memesToCoreData = [Meme]()
         response.forEach { memeData in
             let newMeme = Meme(id: memeData.id, category: Category(memeData.category), imageURL: memeData.imageURL)
+            self.memesData.append(newMeme, for: newMeme.category)
+            memesToCoreData.append(newMeme)
+        }
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.coreDataService.deleteAll()
+            self.coreDataService.save(memesToCoreData)
+            self.topMemesCollectionView.reloadData()
+            self.view.stopSpinner()
+        }
+    }
+    
+    private func prepareMemesFromCoreDataForUI(_ response: [Meme]) {
+        response.forEach { meme in
+            let newMeme = Meme(id: meme.id, category: Category(meme.category.current), imageURL: meme.imageURL)
             self.memesData.append(newMeme, for: newMeme.category)
         }
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.topMemesCollectionView.reloadData()
-            self.view.stopSpinner()
         }
     }
 }
