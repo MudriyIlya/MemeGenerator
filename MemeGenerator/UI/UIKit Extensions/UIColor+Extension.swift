@@ -15,6 +15,7 @@ extension UIColor {
     
     struct Palette {
         static let backgroundColor = UIColor(named: "backgroundColor")
+        static let editorBackground = UIColor.lightGray
         static let tint = UIColor(named: "tint")
         static let accent = UIColor(named: "accent")
         static let textColor = UIColor(named: "textColor")

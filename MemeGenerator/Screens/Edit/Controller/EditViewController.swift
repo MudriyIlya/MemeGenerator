@@ -51,14 +51,19 @@ final class EditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarController?.tabBar.isHidden = true
         title = "Сделай мем"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save,
                                                             target: self,
                                                             action: #selector(saveMemeButtonTapped))
-        // TODO:
         addTextButtonTapped()
+        addImageButtonTapped()
         let tap = UITapGestureRecognizer(target: self, action: #selector(endOfTextEditing))
         view.addGestureRecognizer(tap)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
     }
     
     override func viewWillLayoutSubviews() {
@@ -96,6 +101,47 @@ final class EditViewController: UIViewController {
             self.textView.text = "Жги 🔥"
             self.textView.becomeFirstResponder()
             self.textViewDidChange(self.textView)
+        }
+    }
+    
+    private func addImageButtonTapped() {
+        editor.imageTap = { [weak self] in
+            
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            
+            func openCamera() {
+                if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                    imagePicker.sourceType = .camera
+                    self?.present(imagePicker, animated: true)
+                } else {
+                    let alert = UIAlertController(title: "Упс! Что-то пошло не так...", message: "На Вашем устройстве нет камеры", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ясно", style: .default, handler: nil))
+                    self?.present(alert, animated: true)
+                }
+            }
+            
+            func openLibrary() {
+                if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                    imagePicker.sourceType = .photoLibrary
+                    self?.present(imagePicker, animated: true)
+                } else {
+                    let alert = UIAlertController(title: "Упс! Что-то пошло не так...", message: "У Вас нет доступа к галерее", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ясно", style: .default, handler: nil))
+                    self?.present(alert, animated: true)
+                }
+            }
+            
+            let alert = UIAlertController(title: "Откуда хотите выбрать изображение?", message: nil, preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Камера", style: .default, handler: { _ in
+                openCamera()
+            }))
+            alert.addAction(UIAlertAction(title: "Галерея", style: .default, handler: { _ in
+                openLibrary()
+            }))
+            alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
+            self?.present(alert, animated: true)
         }
     }
     
@@ -146,5 +192,15 @@ extension EditViewController: UITextViewDelegate {
                 constraint.constant = estimatedSize.height
             }
         }
+    }
+}
+
+// MARK: - Image Picker Delegate
+
+extension EditViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        guard let image = info[.editedImage] as? UIImage else { return }
+        editor.add(image)
+        dismiss(animated: true)
     }
 }

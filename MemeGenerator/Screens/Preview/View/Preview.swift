@@ -28,7 +28,7 @@ final class Preview: UIView {
     
     required init() {
         super.init(frame: .zero)
-        backgroundColor = UIColor.black
+        setDefaultBackground()
         setupConstraints()
     }
     
@@ -54,4 +54,7 @@ final class Preview: UIView {
         return meme.image
     }
     
+    func setDefaultBackground() {
+        backgroundColor = UIColor.Palette.backgroundColor
+    }
 }

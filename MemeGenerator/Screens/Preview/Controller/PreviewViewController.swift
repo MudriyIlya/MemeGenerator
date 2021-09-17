@@ -60,7 +60,13 @@ final class PreviewViewController: UIViewController {
     // MARK: - Hide / Show Elements
     
     @objc private func navigationBarHiddenToggle() {
+        if preview.backgroundColor == UIColor.black {
+            preview.setDefaultBackground()
+        } else {
+            preview.backgroundColor = UIColor.black
+        }
         navigationController?.navigationBar.isHidden.toggle()
+        tabBarController?.tabBar.isHidden.toggle()
     }
     
     // MARK: - Save to Camera Roll
