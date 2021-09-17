@@ -65,23 +65,14 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MemeCell.identifier,
                                                             for: indexPath) as? MemeCell else { return MemeCell() }
-        if indexPath.section == 0 && indexPath.row == 0 {
-            cell.configureCell(with: UIImage(systemName: "plus.circle"))
-        } else {
-            cell.configureCell(with: UIImage(systemName: "circle"))
-        }
+        cell.configureCell(with: UIImage(systemName: "circle"))
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.section == 0 && indexPath.row == 0 {
-            let topMemeController = TopMemesViewController()
-            navigationController?.pushViewController(topMemeController, animated: true)
-        } else {
-            // TODO: брать картинку из массива мемов
-            guard let image = UIImage(systemName: "pencil") else { return }
-            let previewViewController = PreviewViewController(withImage: image)
-            navigationController?.pushViewController(previewViewController, animated: true)
-        }
+        // TODO: брать картинку из массива мемов
+        guard let image = UIImage(systemName: "pencil") else { return }
+        let previewViewController = PreviewViewController(withImage: image)
+        navigationController?.pushViewController(previewViewController, animated: true)
     }
 }

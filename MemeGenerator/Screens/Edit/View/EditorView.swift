@@ -12,6 +12,7 @@ final class EditorView: UIView {
     // MARK: - Variables
     
     // MARK: Callbacks
+    var imageTap: (() -> Void)?
     var addTextButtonTap: (() -> Void)?
     
     // MARK: Views
@@ -20,7 +21,6 @@ final class EditorView: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.isUserInteractionEnabled = true
         imageView.backgroundColor = UIColor.Palette.backgroundColor
-        imageView.image = UIImage(systemName: "photo")
         return imageView
     }()
     
@@ -63,7 +63,7 @@ final class EditorView: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = UIColor.clear
         imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = UIColor.Palette.backgroundColor
+        imageView.backgroundColor = UIColor.Palette.editorBackground
         imageView.tintColor = UIColor.Palette.tint
         imageView.image = UIImage(systemName: "trash")
         imageView.isHidden = true
@@ -78,7 +78,7 @@ final class EditorView: UIView {
     
     required init() {
         super.init(frame: .zero)
-        backgroundColor = UIColor.Palette.backgroundColor
+        backgroundColor = UIColor.Palette.editorBackground
         setupConstraints()
     }
     
@@ -123,7 +123,7 @@ final class EditorView: UIView {
     }
     
     @objc func addImageButtonTapped() {
-        addImage()
+        imageTap?()
     }
     
     // MARK: - Meme methods
@@ -132,22 +132,20 @@ final class EditorView: UIView {
         self.imageView.downloadFullImageFromServer(by: url)
     }
     
-    func addImage() {
-        // TODO: image from PHOTO
+    func add(_ image: UIImage) {
         let newImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        newImageView.center = imageView.center
         newImageView.isUserInteractionEnabled = true
-        newImageView.backgroundColor = UIColor.random()
+        newImageView.contentMode = .scaleAspectFill
         enablePinch(newImageView)
         enableRotation(newImageView)
         enableDragging(newImageView)
-//        imageView.image = kakoe-to image
+        newImageView.image = image
+        newImageView.center = imageView.center
         addSubview(newImageView)
     }
     
     func addLabelWith(_ text: NSAttributedString) {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 400, height: 300))
-        label.center = imageView.center
         label.isUserInteractionEnabled = true
         enablePinch(label)
         enableRotation(label)
@@ -156,6 +154,7 @@ final class EditorView: UIView {
         label.numberOfLines = 0
         label.attributedText = text
         label.sizeToFit()
+        label.center = imageView.center
         addSubview(label)
     }
     
