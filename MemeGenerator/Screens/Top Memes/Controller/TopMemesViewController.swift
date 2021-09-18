@@ -23,6 +23,12 @@ final class TopMemesViewController: UIViewController {
         return collectionView
     }()
     
+    private lazy var spinnerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private var networkService: NetworkServiceProtocol
     private var coreDataService: CoreDataServiceProtocol
     private var memesData = MemesCollection()
@@ -47,7 +53,11 @@ final class TopMemesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.Palette.backgroundColor
         title = "Выбери шаблон"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                            target: self,
+                                                            action: #selector(newMemeFromScratch))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -69,6 +79,11 @@ final class TopMemesViewController: UIViewController {
             topMemesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             topMemesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+    }
+    
+    @objc private func newMemeFromScratch() {
+        let editViewController = EditViewController()
+        navigationController?.pushViewController(editViewController, animated: true)
     }
     
     // MARK: - Load Data

@@ -20,15 +20,26 @@ final class LibraryViewController: UIViewController {
         return collectionView
     }()
     
+    private var memes = [UIImage]()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.Palette.backgroundColor
         title = "Твои мемасики"
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "paintbrush"),
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(openSettings))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        StorageService().restoreImages(completion: { memeImages in
+            memeImages.forEach { self.memes.append($0) }
+            self.libraryCollectionView.reloadData()
+        })
     }
     
     override func viewWillLayoutSubviews() {
@@ -59,20 +70,18 @@ final class LibraryViewController: UIViewController {
 extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 9
+        return StorageService().count()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MemeCell.identifier,
                                                             for: indexPath) as? MemeCell else { return MemeCell() }
-        cell.configureCell(with: UIImage(systemName: "circle"))
+        cell.configureCell(with: memes[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // TODO: брать картинку из массива мемов
-        guard let image = UIImage(systemName: "pencil") else { return }
-        let previewViewController = PreviewViewController(withImage: image)
+        let previewViewController = PreviewViewController(withImage: memes[indexPath.row])
         navigationController?.pushViewController(previewViewController, animated: true)
     }
 }

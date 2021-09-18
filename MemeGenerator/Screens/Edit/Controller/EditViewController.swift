@@ -83,16 +83,15 @@ final class EditViewController: UIViewController {
         ])
         NSLayoutConstraint.activate([
             textView.centerXAnchor.constraint(equalTo: textViewBackground.centerXAnchor),
-            textView.bottomAnchor.constraint(equalTo: textViewBackground.centerYAnchor, constant: textViewBackground.bounds.height * 0.5),
+            textView.centerYAnchor.constraint(equalTo: textViewBackground.centerYAnchor),
             textView.leadingAnchor.constraint(equalTo: textViewBackground.leadingAnchor, constant: 100),
-            textView.trailingAnchor.constraint(equalTo: textViewBackground.trailingAnchor, constant: -100),
-            textView.heightAnchor.constraint(equalToConstant: 40)
+            textView.trailingAnchor.constraint(equalTo: textViewBackground.trailingAnchor, constant: -100)
         ])
     }
     
     // MARK: - Buttons
     
-    // MARK: Add Text to Meme
+    // Add Text to Meme
     private func addTextButtonTapped() {
         editor.addTextButtonTap = { [weak self] in
             guard let self = self else { return }
@@ -104,6 +103,7 @@ final class EditViewController: UIViewController {
         }
     }
     
+    // Add Image to Meme
     private func addImageButtonTapped() {
         editor.imageTap = { [weak self] in
             
@@ -145,25 +145,12 @@ final class EditViewController: UIViewController {
         }
     }
     
-    // MARK: Save Meme
+    // Save Meme
     @objc private func saveMemeButtonTapped() {
-        let image = editor.getMemeImage()
-        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+        showNameAlertController()
     }
     
-    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        if let error = error {
-            let alert = UIAlertController(title: "Ошибка сохранения", message: error.localizedDescription, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Грустно...", style: .default))
-            present(alert, animated: true)
-        } else {
-            let alert = UIAlertController(title: "Готово", message: "Демотиватор сохранился в Фото", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Круто!", style: .default))
-            present(alert, animated: true)
-        }
-    }
-    
-    // MARK: Hide Text Editor and Keyboard
+    // Hide Text Editor
     @objc func endOfTextEditing() {
         if !textView.attributedText.isEqual(to: NSAttributedString(string: "")) {
             editor.addLabelWith(self.textView.attributedText)
@@ -172,6 +159,7 @@ final class EditViewController: UIViewController {
         hideKeyboard()
     }
     
+    // Hide Keyboard
     @objc private func hideKeyboard() {
         textViewBackground.isHidden = true
         textView.isHidden = true
@@ -202,5 +190,44 @@ extension EditViewController: UIImagePickerControllerDelegate, UINavigationContr
         guard let image = info[.editedImage] as? UIImage else { return }
         editor.add(image)
         dismiss(animated: true)
+    }
+}
+
+// MARK: - Save Meme to File System
+
+extension EditViewController {
+    
+    private func showNameAlertController() {
+        let nameAlertController = UIAlertController(title: "Сохранить как:", message: nil, preferredStyle: .alert)
+        nameAlertController.addTextField { (textField: UITextField) in
+            textField.placeholder = "IMG\(StorageService().count() + 1)"
+            textField.text = ""
+            textField.clearButtonMode = .whileEditing
+        }
+        
+        let saveAndReturnAction = UIAlertAction(title: "Сохранить", style: .default) { [weak self] _ in
+            guard let self = self,
+                  var imageName = nameAlertController.textFields?.first?.text else { return }
+            if imageName == "" { imageName = "IMG\(StorageService().count() + 1)" }
+            self.saveMeme(imageName, completion: self.backToLibrary)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        
+        nameAlertController.addAction(saveAndReturnAction)
+        nameAlertController.addAction(cancelAction)
+        
+        self.navigationController?.present(nameAlertController, animated: true, completion: nil)
+    }
+    
+    private func saveMeme(_ name: String, completion: () -> Void) {
+        let imageToSave = editor.getMemeImage()
+        StorageService().save(imageToSave, with: name, completion: completion)
+    }
+    
+    private func backToLibrary() {
+        tabBarController?.tabBar.isHidden = false
+        tabBarController?.selectedIndex = 0
+        navigationController?.popViewController(animated: true)
     }
 }

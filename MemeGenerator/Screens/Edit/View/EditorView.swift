@@ -36,7 +36,7 @@ final class EditorView: UIView {
     private lazy var addTextButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        //        button.accessibilityIdentifier = "Add Text Button"
+//        button.accessibilityIdentifier = "Add Text Button"
         button.layer.cornerRadius = Constants.cornerRadius
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(addTextButtonTapped), for: .touchUpInside)

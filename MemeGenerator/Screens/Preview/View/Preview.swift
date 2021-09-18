@@ -16,6 +16,7 @@ final class Preview: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.isUserInteractionEnabled = false
         imageView.backgroundColor = UIColor.Palette.backgroundColor
+        imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(systemName: "photo")
         return imageView
     }()
@@ -37,7 +38,7 @@ final class Preview: UIView {
     private func setupConstraints() {
         addSubview(meme)
         NSLayoutConstraint.activate([
-            meme.widthAnchor.constraint(equalTo: widthAnchor),
+            meme.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
             meme.heightAnchor.constraint(equalTo: meme.widthAnchor),
             meme.centerXAnchor.constraint(equalTo: centerXAnchor),
             meme.centerYAnchor.constraint(equalTo: centerYAnchor)

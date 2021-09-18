@@ -37,6 +37,7 @@
 		A26632F726F4E1090036EEB7 /* TabBarMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26632F626F4E1090036EEB7 /* TabBarMenu.swift */; };
 		A26632F826F4E1090036EEB7 /* TabBarMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26632F626F4E1090036EEB7 /* TabBarMenu.swift */; };
 		A26632F926F4E1090036EEB7 /* TabBarMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26632F626F4E1090036EEB7 /* TabBarMenu.swift */; };
+		A26632FB26F504050036EEB7 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26632FA26F504050036EEB7 /* StorageService.swift */; };
 		A29F87BD26F4997F00B37D1A /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29F87BB26F4997F00B37D1A /* CoreDataService.swift */; };
 		A29F87BE26F4997F00B37D1A /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29F87BB26F4997F00B37D1A /* CoreDataService.swift */; };
 		A29F87BF26F4997F00B37D1A /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29F87BB26F4997F00B37D1A /* CoreDataService.swift */; };
@@ -161,6 +162,7 @@
 		A25FE83326F0CE1D006D7808 /* ThemeWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeWindow.swift; sourceTree = "<group>"; };
 		A25FE83726F0CE69006D7808 /* UIWindow+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extension.swift"; sourceTree = "<group>"; };
 		A26632F626F4E1090036EEB7 /* TabBarMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarMenu.swift; sourceTree = "<group>"; };
+		A26632FA26F504050036EEB7 /* StorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		A29F87BB26F4997F00B37D1A /* CoreDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		A29F87BC26F4997F00B37D1A /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		A29F87C726F4A2FE00B37D1A /* CoreDataServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServiceProtocol.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 		A29F87C426F49FF900B37D1A /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A26632FA26F504050036EEB7 /* StorageService.swift */,
 				A2A755EF26E950E900578F92 /* Network Service */,
 				A29F87C326F49FDB00B37D1A /* CoreData Service */,
 			);
@@ -716,6 +719,7 @@
 				A2A755CE26E91C7E00578F92 /* Meme.swift in Sources */,
 				A2A7566526ED2E6100578F92 /* PreviewViewController.swift in Sources */,
 				A29F87C026F4997F00B37D1A /* CoreDataStack.swift in Sources */,
+				A26632FB26F504050036EEB7 /* StorageService.swift in Sources */,
 				A2A755DB26E9443600578F92 /* UIView+Extension.swift in Sources */,
 				A2A755E426E94E5300578F92 /* MemeDataResponse.swift in Sources */,
 				A25FE82726F0AD61006D7808 /* CGFloat+Extension.swift in Sources */,
