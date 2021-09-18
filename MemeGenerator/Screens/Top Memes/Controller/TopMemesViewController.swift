@@ -31,7 +31,7 @@ final class TopMemesViewController: UIViewController {
     
     private var networkService: NetworkServiceProtocol
     private var coreDataService: CoreDataServiceProtocol
-    private var memesData = MemesCollection()
+    private var memesData: MemesCollection
     
     // MARK: - Initialization
     
@@ -42,6 +42,7 @@ final class TopMemesViewController: UIViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.networkService = NetworkService()
         self.coreDataService = CoreDataService()
+        self.memesData = MemesCollection()
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
@@ -63,6 +64,11 @@ final class TopMemesViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         loadDataFromServer()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        memesData.removeAll()
     }
     
     override func viewWillLayoutSubviews() {
@@ -171,12 +177,9 @@ extension TopMemesViewController: UICollectionViewDelegate, UICollectionViewData
             guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                                       withReuseIdentifier: SectionHeader.identifier,
                                                                                       for: indexPath) as? SectionHeader
-            else { return SectionHeader() }
+            else { return UICollectionReusableView() }
             let categories = memesData.allCategories()
-            guard let memes = memesData.memes(in: categories[indexPath.section]) else { return SectionHeader() }
-            if indexPath.section < memes.count {
-                sectionHeader.label.text = memes[indexPath.section].category.current.uppercased()
-            }
+            sectionHeader.label.text = categories[indexPath.section].current
             return sectionHeader
         } else {
             // No footer

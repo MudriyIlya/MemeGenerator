@@ -18,6 +18,7 @@ final class SectionHeader: UICollectionReusableView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = UIColor.Palette.backgroundColor
         label.textColor = UIColor.Palette.textColor
+        label.text = ""
         label.font = UIFont.systemFont(ofSize: label.font.pointSize + 4, weight: .bold)
         return label
     }()
