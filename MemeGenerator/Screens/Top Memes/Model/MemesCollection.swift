@@ -52,4 +52,8 @@ struct MemesCollection {
             return nil
         }   
     }
+    
+    mutating func removeAll() {
+        allMemes.removeAll()
+    }
 }
