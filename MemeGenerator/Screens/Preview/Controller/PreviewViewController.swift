@@ -11,10 +11,6 @@ final class PreviewViewController: UIViewController {
 
     // MARK: - Variables
     
-    private lazy var imageForNavigationBarBackground: UIImage = {
-        return UIImage()
-    }()
-    
     private lazy var preview: Preview = {
         let view = Preview()
         return view
@@ -41,20 +37,6 @@ final class PreviewViewController: UIViewController {
                                                             action: #selector(saveToCameraRollButtonPressed))
         let tap = UITapGestureRecognizer(target: self, action: #selector(navigationBarHiddenToggle))
         view.addGestureRecognizer(tap)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.setBackgroundImage(imageForNavigationBarBackground, for: .top, barMetrics: .default)
-        self.navigationController?.navigationBar.shadowImage = imageForNavigationBarBackground
-        self.navigationController?.navigationBar.isTranslucent = true
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .top, barMetrics: .default)
-        self.navigationController?.navigationBar.shadowImage = nil
-        self.navigationController?.navigationBar.isTranslucent = false
     }
     
     // MARK: - Hide / Show Elements

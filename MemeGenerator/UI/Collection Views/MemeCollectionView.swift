@@ -37,7 +37,8 @@ final class MemeCollectionView: UICollectionView {
     // MARK: - Setup Collection View
     
     private func setupCollection() {
-        backgroundColor = UIColor.Palette.backgroundColor
+//        backgroundColor = UIColor.Palette.backgroundColor
+        backgroundColor = UIColor.clear
         showsVerticalScrollIndicator = false
     }
     

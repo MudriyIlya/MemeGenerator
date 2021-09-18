@@ -25,7 +25,7 @@ final class MemeCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setOpaqueBackground()
+        backgroundColor = UIColor.Palette.backgroundColor
         setupConstraints()
     }
     
@@ -48,17 +48,17 @@ final class MemeCell: UICollectionViewCell {
     // MARK: - Configuration
     
     override func prepareForReuse() {
-        setOpaqueBackground()
+        backgroundColor = UIColor.Palette.backgroundColor
         imageView.image = nil
     }
     
     func configureCell(with image: UIImage?) {
-        setOpaqueBackground()
-        self.imageView.image = image
+        backgroundColor = UIColor.Palette.backgroundColor
+        imageView.image = image
     }
     
     func configureCell(with meme: Meme) {
-        setOpaqueBackground()
+        backgroundColor = UIColor.Palette.backgroundColor
         imageView.downloadThumbImageFromServer(by: meme.imageURL)
     }
 }

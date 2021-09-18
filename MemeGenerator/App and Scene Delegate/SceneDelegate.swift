@@ -17,8 +17,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         themeWindow.makeKey()
         window = UIWindow(windowScene: windowScene)
-//        let navigationController = UINavigationController(rootViewController: EditViewController())
-//        window?.rootViewController = navigationController
         let menu = TabBarMenu()
         window?.rootViewController = menu
         window?.initTheme()
