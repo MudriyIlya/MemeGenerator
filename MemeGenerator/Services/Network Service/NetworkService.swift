@@ -74,4 +74,19 @@ extension NetworkService: NetworkServiceProtocol {
         else { throw NetworkServiceError.network }
         return data
     }
+    
+    func loadInstagramImage(completion: @escaping (Data?) -> Void) {
+        let urlString = "https://tinyurl.com/k3f76umc"
+        guard let url = URL(string: urlString) else { return completion(nil) }
+        let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
+        let handler: Handler = { data, response, error in
+            do {
+                let data = try self.httpResponse(data: data, response: response)
+                completion(data)
+            } catch {
+                completion(nil)
+            }
+        }
+        session.dataTask(with: request, completionHandler: handler).resume()
+    }
 }
