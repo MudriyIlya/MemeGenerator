@@ -9,6 +9,18 @@ import UIKit
 
 extension UIImageView {
     
+    func downloadInstagramImage() {
+        startSpinner()
+        NetworkService().loadInstagramImage { [weak self] data in
+            DispatchQueue.main.async {
+                guard let self = self,
+                      let data = data else { return }
+                self.image = UIImage(data: data)
+                self.stopSpinner()
+            }
+        }
+    }
+    
     func downloadFullImageFromServer(by nameURL: String) {
         startSpinner()
         NetworkService().loadMemeImage(imageURL: nameURL, thumb: false) { [weak self] data in
