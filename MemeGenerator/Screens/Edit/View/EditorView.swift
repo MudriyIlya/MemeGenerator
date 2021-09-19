@@ -202,7 +202,7 @@ extension EditorView {
     }
     
     private func moveViewWithPan(_ view: UIView, gesture: UIPanGestureRecognizer) {
-        let translation = gesture.translation(in: view)
+        let translation = gesture.translation(in: self)
         view.center = CGPoint(x: view.center.x + translation.x,
                               y: view.center.y + translation.y)
         gesture.setTranslation(CGPoint.zero, in: view)
