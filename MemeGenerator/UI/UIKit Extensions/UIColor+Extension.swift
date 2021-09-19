@@ -20,8 +20,9 @@ extension UIColor {
         static let accent = UIColor(named: "accent")
         static let textColor = UIColor(named: "textColor")
         static let spinnerColor = UIColor(named: "spinnerColor")
-        // TODO: добавить в ассет под разные темы
-        static let filterBackground = UIColor(white: 0, alpha: 0.4)
+        static let shadowColor = UIColor(named: "shadowColor")
+        static let buttonColor = UIColor(named: "buttonColor")
+        static let filterBackground = UIColor(named: "filterBackground")?.withAlphaComponent(0.4)
         
         private init() { }
     }

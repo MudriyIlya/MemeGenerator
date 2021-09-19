@@ -34,6 +34,7 @@ final class SettingTableViewCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.isUserInteractionEnabled = false
         imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = UIColor.Palette.tint
         return imageView
     }()
     

@@ -11,11 +11,9 @@ class TabBarMenu: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = UIColor.Palette.backgroundColor
         UITabBar.appearance().barTintColor = UIColor.Palette.backgroundColor
         tabBar.tintColor = UIColor.Palette.tint
-        
         setupVC()
     }
     
@@ -23,7 +21,6 @@ class TabBarMenu: UITabBarController {
         guard let libraryImage = UIImage(systemName: "folder") else { return }
         guard let topMemesImage = UIImage(systemName: "guitars") else { return }
         viewControllers = [
-            // TODO: убрать ! force-unwrap
             createNavigationController(with: LibraryViewController(), title: "Мемасики", image: libraryImage),
             createNavigationController(with: TopMemesViewController(), title: "Шаблоны", image: topMemesImage)
         ]
@@ -31,6 +28,9 @@ class TabBarMenu: UITabBarController {
     
     func createNavigationController(with rootViewController: UIViewController, title: String, image: UIImage) -> UIViewController {
         let navigationController = UINavigationController(rootViewController: rootViewController)
+        navigationController.navigationBar.tintColor = UIColor.Palette.tint
+        // TODO: force unwrap
+        navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.Palette.tint!]
         navigationController.tabBarItem.title = title
         navigationController.tabBarItem.image = image
         rootViewController.title = title

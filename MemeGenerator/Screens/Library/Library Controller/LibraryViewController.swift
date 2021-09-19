@@ -27,6 +27,7 @@ final class LibraryViewController: UIViewController {
         imageView.image = UIImage(systemName: "plus.square")
         let tapOnCreateNewMeme = UITapGestureRecognizer(target: self, action: #selector(openTopMemes))
         imageView.addGestureRecognizer(tapOnCreateNewMeme)
+        imageView.tintColor = UIColor.Palette.tint
         imageView.isHidden = true
         return imageView
     }()
@@ -43,14 +44,20 @@ final class LibraryViewController: UIViewController {
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(openSettings))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                            target: self,
+                                                            action: #selector(openTopMemes))
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        memes.removeAll()
         StorageService().restoreImages(completion: { memeImages in
             memeImages.forEach { self.memes.append($0) }
-            self.createNewMemeImageView.isHidden = true
-            self.libraryCollectionView.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                self?.createNewMemeImageView.isHidden = true
+                self?.libraryCollectionView.reloadData()
+            }
         })
         if memes.isEmpty {
             createNewMemeImageView.isHidden = false
@@ -58,7 +65,7 @@ final class LibraryViewController: UIViewController {
     }
     
     @objc private func openTopMemes() {
-        print("kek")
+        tabBarController?.selectedIndex = 1
     }
     
     override func viewWillLayoutSubviews() {
@@ -96,12 +103,13 @@ final class LibraryViewController: UIViewController {
 extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return StorageService().count()
+        return memes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MemeCell.identifier,
                                                             for: indexPath) as? MemeCell else { return MemeCell() }
+        cell.prepareForReuse()
         cell.configureCell(with: memes[indexPath.row])
         return cell
     }

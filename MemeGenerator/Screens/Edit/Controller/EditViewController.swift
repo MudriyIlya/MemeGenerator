@@ -23,6 +23,7 @@ final class EditViewController: UIViewController {
         textView.isScrollEnabled = false
         textView.backgroundColor = UIColor.clear
         textView.textAlignment = .center
+        textView.textColor = UIColor.black
         textView.text = ""
         textView.isHidden = true
         return textView
@@ -97,7 +98,7 @@ final class EditViewController: UIViewController {
             guard let self = self else { return }
             self.textViewBackground.isHidden = false
             self.textView.isHidden = false
-            self.textView.text = "Жги 🔥"
+            self.textView.text = ""
             self.textView.becomeFirstResponder()
             self.textViewDidChange(self.textView)
         }
@@ -147,7 +148,7 @@ final class EditViewController: UIViewController {
     
     // Save Meme
     @objc private func saveMemeButtonTapped() {
-        showNameAlertController()
+        saveMemeToFileSystem()
     }
     
     // Hide Text Editor
@@ -197,27 +198,9 @@ extension EditViewController: UIImagePickerControllerDelegate, UINavigationContr
 
 extension EditViewController {
     
-    private func showNameAlertController() {
-        let nameAlertController = UIAlertController(title: "Сохранить как:", message: nil, preferredStyle: .alert)
-        nameAlertController.addTextField { (textField: UITextField) in
-            textField.placeholder = "IMG\(StorageService().count() + 1)"
-            textField.text = ""
-            textField.clearButtonMode = .whileEditing
-        }
-        
-        let saveAndReturnAction = UIAlertAction(title: "Сохранить", style: .default) { [weak self] _ in
-            guard let self = self,
-                  var imageName = nameAlertController.textFields?.first?.text else { return }
-            if imageName == "" { imageName = "IMG\(StorageService().count() + 1)" }
-            self.saveMeme(imageName, completion: self.backToLibrary)
-        }
-        
-        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
-        
-        nameAlertController.addAction(saveAndReturnAction)
-        nameAlertController.addAction(cancelAction)
-        
-        self.navigationController?.present(nameAlertController, animated: true, completion: nil)
+    private func saveMemeToFileSystem() {
+        let imageName = "\(UUID())"
+        saveMeme(imageName, completion: self.backToLibrary)
     }
     
     private func saveMeme(_ name: String, completion: () -> Void) {
