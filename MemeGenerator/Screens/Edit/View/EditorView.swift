@@ -24,40 +24,36 @@ final class EditorView: UIView {
         return imageView
     }()
     
-    private lazy var buttonsStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.distribution = .equalSpacing
-        stackView.alignment = .fill
-        return stackView
-    }()
-    
     private lazy var addTextButton: UIButton = {
-        let button = UIButton(type: .system)
+        let button = UIButton(type: .custom)
         button.translatesAutoresizingMaskIntoConstraints = false
 //        button.accessibilityIdentifier = "Add Text Button"
         button.layer.cornerRadius = Constants.cornerRadius
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(addTextButtonTapped), for: .touchUpInside)
-        button.setTitle("Текст", for: .normal)
-//        button.setTitleColor(UIColor.Palette.textColor, for: .normal)
-        button.setTitleColor(UIColor.Palette.backgroundColor, for: .normal)
-        button.backgroundColor = UIColor.Palette.buttonColor
+        button.setImage(UIImage(systemName: "textformat.alt"), for: .normal)
+        button.tintColor = UIColor.Palette.buttonColor
+        button.imageView?.contentMode = .scaleAspectFit
         return button
     }()
     
     private lazy var addImageButton: UIButton = {
-        let button = UIButton(type: .system)
+        let button = UIButton(type: .custom)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = Constants.cornerRadius
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(addImageButtonTapped), for: .touchUpInside)
-        button.setTitle("Изображение", for: .normal)
-//        button.setTitleColor(UIColor.Palette.textColor, for: .normal)
-        button.setTitleColor(UIColor.Palette.backgroundColor, for: .normal)
-        button.backgroundColor = UIColor.Palette.buttonColor
+        button.setImage(UIImage(systemName: "photo"), for: .normal)
+        button.tintColor = UIColor.Palette.buttonColor
+        button.imageView?.contentMode = .scaleAspectFit
         return button
+    }()
+    
+    private lazy var container: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor.Palette.backgroundColor?.withAlphaComponent(0.7)
+        return view
     }()
     
     private lazy var trash: UIImageView = {
@@ -91,9 +87,10 @@ final class EditorView: UIView {
     // MARK: - Setup Constraints
     
     private func setupConstraints() {
-        addSubview(buttonsStackView)
-        buttonsStackView.addArrangedSubview(addTextButton)
-        buttonsStackView.addArrangedSubview(addImageButton)
+        container.addSubview(addTextButton)
+        container.addSubview(addImageButton)
+        addSubview(container)
+        
         addSubview(imageView)
         addSubview(trash)
         NSLayoutConstraint.activate([
@@ -102,19 +99,32 @@ final class EditorView: UIView {
             imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
+
         NSLayoutConstraint.activate([
-            buttonsStackView.heightAnchor.constraint(equalToConstant: 40),
-            buttonsStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20),
-            buttonsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            buttonsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            container.leadingAnchor.constraint(equalTo: leadingAnchor),
+            container.trailingAnchor.constraint(equalTo: trailingAnchor),
+            container.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            container.heightAnchor.constraint(equalToConstant: 49),
+            
             addTextButton.widthAnchor.constraint(equalTo: addImageButton.widthAnchor),
-            addImageButton.widthAnchor.constraint(equalTo: addTextButton.widthAnchor)
+            addImageButton.widthAnchor.constraint(equalTo: addTextButton.widthAnchor),
+            
+            addTextButton.topAnchor.constraint(equalTo: container.topAnchor),
+            addTextButton.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+            addTextButton.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            addTextButton.trailingAnchor.constraint(equalTo: addImageButton.leadingAnchor),
+        
+            addImageButton.leadingAnchor.constraint(equalTo: addTextButton.trailingAnchor),
+            addImageButton.topAnchor.constraint(equalTo: container.topAnchor),
+            addImageButton.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+            addImageButton.trailingAnchor.constraint(equalTo: container.trailingAnchor)
         ])
+
         NSLayoutConstraint.activate([
             trash.widthAnchor.constraint(equalToConstant: 44),
             trash.heightAnchor.constraint(equalTo: trash.widthAnchor),
             trash.centerXAnchor.constraint(equalTo: centerXAnchor),
-            trash.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20)
+            trash.bottomAnchor.constraint(equalTo: container.topAnchor, constant: -20)
         ])
     }
     
@@ -135,7 +145,7 @@ final class EditorView: UIView {
     }
     
     func add(_ image: UIImage) {
-        let newImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        let newImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
         newImageView.isUserInteractionEnabled = true
         newImageView.contentMode = .scaleAspectFill
         enablePinch(newImageView)
@@ -155,9 +165,11 @@ final class EditorView: UIView {
         label.backgroundColor = UIColor.clear
         label.numberOfLines = 0
         label.textColor = UIColor.black
+        label.font = UIFont.systemFont(ofSize: 27, weight: .semibold)
         label.attributedText = text
         label.sizeToFit()
         label.center = imageView.center
+        
         addSubview(label)
     }
     
@@ -187,6 +199,7 @@ extension EditorView {
     
     private func enableDragging(_ view: UIView) {
         let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
+        pan.delegate = self
         view.addGestureRecognizer(pan)
     }
     
@@ -215,6 +228,7 @@ extension EditorView {
     
     private func enablePinch(_ view: UIView) {
         let pinch = UIPinchGestureRecognizer(target: self, action: #selector(handlePinch(_:)))
+        pinch.delegate = self
         view.addGestureRecognizer(pinch)
     }
     
@@ -229,6 +243,7 @@ extension EditorView {
     
     private func enableRotation(_ view: UIView) {
         let rotate = UIRotationGestureRecognizer(target: self, action: #selector(handleRotate(_:)))
+        rotate.delegate = self
         view.addGestureRecognizer(rotate)
     }
     
@@ -236,5 +251,13 @@ extension EditorView {
         guard let gestureView = gesture.view else { return }
         gestureView.transform = gestureView.transform.rotated(by: gesture.rotation)
         gesture.rotation = 0
+    }
+}
+
+// MARK: - Gesture Recognizer Delegate
+
+extension EditorView: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

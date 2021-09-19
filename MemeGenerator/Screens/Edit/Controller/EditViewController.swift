@@ -25,6 +25,7 @@ final class EditViewController: UIViewController {
         textView.textAlignment = .center
         textView.textColor = UIColor.black
         textView.text = ""
+        textView.font = UIFont.systemFont(ofSize: 27, weight: .semibold)
         textView.isHidden = true
         return textView
     }()
@@ -85,8 +86,8 @@ final class EditViewController: UIViewController {
         NSLayoutConstraint.activate([
             textView.centerXAnchor.constraint(equalTo: textViewBackground.centerXAnchor),
             textView.centerYAnchor.constraint(equalTo: textViewBackground.centerYAnchor),
-            textView.leadingAnchor.constraint(equalTo: textViewBackground.leadingAnchor, constant: 100),
-            textView.trailingAnchor.constraint(equalTo: textViewBackground.trailingAnchor, constant: -100)
+            textView.leadingAnchor.constraint(equalTo: textViewBackground.leadingAnchor, constant: 20),
+            textView.trailingAnchor.constraint(equalTo: textViewBackground.trailingAnchor, constant: -20)
         ])
     }
     
@@ -199,13 +200,14 @@ extension EditViewController: UIImagePickerControllerDelegate, UINavigationContr
 extension EditViewController {
     
     private func saveMemeToFileSystem() {
-        let imageName = "\(UUID())"
+        
+        let imageName = "IMG\(StorageService().count() + 1)"
         saveMeme(imageName, completion: self.backToLibrary)
     }
     
     private func saveMeme(_ name: String, completion: () -> Void) {
         let imageToSave = editor.getMemeImage()
-        StorageService().save(imageToSave, with: name, completion: completion)
+        StorageService().save(PreviewMeme(withName: name, image: imageToSave), completion: completion)
     }
     
     private func backToLibrary() {
