@@ -20,7 +20,7 @@ final class EditorView: UIView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.isUserInteractionEnabled = true
-        imageView.backgroundColor = UIColor.Palette.backgroundColor
+        imageView.backgroundColor = UIColor.white
         return imageView
     }()
     
@@ -41,8 +41,9 @@ final class EditorView: UIView {
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(addTextButtonTapped), for: .touchUpInside)
         button.setTitle("Текст", for: .normal)
-        button.setTitleColor(UIColor.Palette.textColor, for: .normal)
-        button.backgroundColor = UIColor.Palette.accent
+//        button.setTitleColor(UIColor.Palette.textColor, for: .normal)
+        button.setTitleColor(UIColor.Palette.backgroundColor, for: .normal)
+        button.backgroundColor = UIColor.Palette.buttonColor
         return button
     }()
     
@@ -53,8 +54,9 @@ final class EditorView: UIView {
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(addImageButtonTapped), for: .touchUpInside)
         button.setTitle("Изображение", for: .normal)
-        button.setTitleColor(UIColor.Palette.textColor, for: .normal)
-        button.backgroundColor = UIColor.Palette.accent
+//        button.setTitleColor(UIColor.Palette.textColor, for: .normal)
+        button.setTitleColor(UIColor.Palette.backgroundColor, for: .normal)
+        button.backgroundColor = UIColor.Palette.buttonColor
         return button
     }()
     
@@ -152,6 +154,7 @@ final class EditorView: UIView {
         enableDragging(label)
         label.backgroundColor = UIColor.clear
         label.numberOfLines = 0
+        label.textColor = UIColor.black
         label.attributedText = text
         label.sizeToFit()
         label.center = imageView.center

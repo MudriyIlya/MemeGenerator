@@ -18,6 +18,7 @@ final class MemeCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
+        imageView.image = nil
         return imageView
     }()
     
@@ -26,11 +27,18 @@ final class MemeCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.Palette.backgroundColor
-        setupConstraints()
+        cornerRadius()
+        setupShadow()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setupConstraints()
+        improveScrollingPerformance()
     }
     
     // MARK: - Setup Cell
@@ -43,6 +51,25 @@ final class MemeCell: UICollectionViewCell {
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
+    }
+    
+    private func cornerRadius() {
+        contentView.layer.cornerRadius = Constants.cornerRadius
+        contentView.layer.masksToBounds = true
+        layer.cornerRadius = Constants.cornerRadius
+        layer.masksToBounds = false
+    }
+    
+    private func setupShadow() {
+        layer.shadowRadius = 2.0
+        layer.shadowColor = UIColor.Palette.shadowColor?.cgColor
+        layer.shadowOpacity = 0.8
+        layer.shadowOffset = CGSize(width: 0, height: 2)
+    }
+    
+    private func improveScrollingPerformance() {
+        layer.shadowPath = UIBezierPath(roundedRect: bounds,
+                                        cornerRadius: Constants.cornerRadius).cgPath
     }
     
     // MARK: - Configuration
