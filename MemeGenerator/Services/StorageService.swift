@@ -30,12 +30,17 @@ struct StorageService {
         }
     }
     
-    // MARK: - Save
+    // MARK: - Count
     
-    func save(_ image: UIImage, with name: String, completion: () -> Void) {
-        let filePath = Documents.path.appendingPathComponent(name + ".png")
+    func count() -> Int {
+        return Documents.files.count
+    }
+    
+    // MARK: - Save
+    func save(_ meme: PreviewMeme, completion: () -> Void) {
+        let filePath = Documents.path.appendingPathComponent(meme.name + ".png")
         do {
-            guard let data = image.pngData() else { return }
+            guard let data = meme.image.pngData() else { return }
             try data.write(to: filePath)
             completion()
         } catch let error { print("Saving file to \"Documents\" error: ", error) }
@@ -43,22 +48,26 @@ struct StorageService {
     
     // MARK: - Restore
     
-    func restoreImages(completion: ([UIImage]) -> Void) {
-        var images = [UIImage]()
+    func restorePreviewMemes(completion: ([PreviewMeme]) -> Void) {
+        var images = [PreviewMeme]()
         Documents.files.forEach { path in
             let filePath = Documents.path.appendingPathComponent(path)
             guard let fileData = FileManager.default.contents(atPath: filePath.path) else { return }
             guard let image = UIImage(data: fileData) else { return }
-            images.append(image)
+            images.append(PreviewMeme(withName: filePath.deletingPathExtension().lastPathComponent, image: image))
         }
-        // TODO: Сортировку по дате изменения
-//        #warning("Сделать сортировку по дате изменения")
-        completion(images)
+        completion(images.sorted { $0.name > $1.name })
     }
     
-    // MARK: - Count
+    // MARK: - Remove
     
-    func count() -> Int {
-        return Documents.files.count
+    func remove(previewMeme meme: PreviewMeme, completion: () -> Void) {
+        let filePath = Documents.path.appendingPathComponent(meme.name + ".png")
+        do {
+            try FileManager.default.removeItem(at: filePath)
+            completion()
+        } catch {
+            print(error)
+        }
     }
 }

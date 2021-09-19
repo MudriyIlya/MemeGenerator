@@ -16,11 +16,12 @@ final class LibraryViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.backgroundColor = .clear
         collectionView.register(MemeCell.self, forCellWithReuseIdentifier: MemeCell.identifier)
         return collectionView
     }()
     
-    private lazy var createNewMemeImageView: UIImageView = {
+    private lazy var addMemeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.isUserInteractionEnabled = true
@@ -32,7 +33,7 @@ final class LibraryViewController: UIViewController {
         return imageView
     }()
     
-    private var memes = [UIImage]()
+    private var memes = [PreviewMeme]()
     
     // MARK: - Lifecycle
     
@@ -44,23 +45,22 @@ final class LibraryViewController: UIViewController {
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(openSettings))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
-                                                            target: self,
-                                                            action: #selector(openTopMemes))
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         memes.removeAll()
-        StorageService().restoreImages(completion: { memeImages in
-            memeImages.forEach { self.memes.append($0) }
+        StorageService().restorePreviewMemes { previewMemes in
+            previewMemes.forEach { self.memes.append($0) }
             DispatchQueue.main.async { [weak self] in
-                self?.createNewMemeImageView.isHidden = true
-                self?.libraryCollectionView.reloadData()
+                guard let self = self else { return }
+                if self.memes.isEmpty {
+                    self.addMemeImageView.isHidden = false
+                } else {
+                    self.addMemeImageView.isHidden = true
+                }
+                self.libraryCollectionView.reloadData()
             }
-        })
-        if memes.isEmpty {
-            createNewMemeImageView.isHidden = false
         }
     }
     
@@ -76,18 +76,18 @@ final class LibraryViewController: UIViewController {
     
     func setupConstraints() {
         view.addSubview(libraryCollectionView)
+        view.addSubview(addMemeImageView)
         NSLayoutConstraint.activate([
             libraryCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
             libraryCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             libraryCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             libraryCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
-        view.addSubview(createNewMemeImageView)
         NSLayoutConstraint.activate([
-            createNewMemeImageView.widthAnchor.constraint(equalToConstant: 40),
-            createNewMemeImageView.heightAnchor.constraint(equalTo: createNewMemeImageView.widthAnchor),
-            createNewMemeImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            createNewMemeImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            addMemeImageView.widthAnchor.constraint(equalToConstant: 40),
+            addMemeImageView.heightAnchor.constraint(equalTo: addMemeImageView.widthAnchor),
+            addMemeImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            addMemeImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
     
@@ -110,12 +110,12 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MemeCell.identifier,
                                                             for: indexPath) as? MemeCell else { return MemeCell() }
         cell.prepareForReuse()
-        cell.configureCell(with: memes[indexPath.row])
+        cell.configureCell(with: memes[indexPath.row].image)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let previewViewController = PreviewViewController(withImage: memes[indexPath.row])
+        let previewViewController = PreviewViewController(withPreviewMeme: memes[indexPath.row])
         navigationController?.pushViewController(previewViewController, animated: true)
     }
 }
