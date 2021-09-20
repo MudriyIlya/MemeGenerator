@@ -40,7 +40,7 @@ final class TopMemesViewController: UIViewController {
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        self.networkService = NetworkService()
+        self.networkService = NetworkService(session: URLSession.shared)
         self.coreDataService = CoreDataService()
         self.memesData = MemesCollection()
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)

@@ -27,7 +27,7 @@ final class EditorView: UIView {
     private lazy var addTextButton: UIButton = {
         let button = UIButton(type: .custom)
         button.translatesAutoresizingMaskIntoConstraints = false
-//        button.accessibilityIdentifier = "Add Text Button"
+        button.accessibilityIdentifier = "AddTextButton"
         button.layer.cornerRadius = Constants.cornerRadius
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(addTextButtonTapped), for: .touchUpInside)
@@ -40,6 +40,7 @@ final class EditorView: UIView {
     private lazy var addImageButton: UIButton = {
         let button = UIButton(type: .custom)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.accessibilityIdentifier = "AddImageButton"
         button.layer.cornerRadius = Constants.cornerRadius
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(addImageButtonTapped), for: .touchUpInside)
@@ -99,7 +100,7 @@ final class EditorView: UIView {
             imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
-
+        
         NSLayoutConstraint.activate([
             container.leadingAnchor.constraint(equalTo: leadingAnchor),
             container.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -113,13 +114,13 @@ final class EditorView: UIView {
             addTextButton.bottomAnchor.constraint(equalTo: container.bottomAnchor),
             addTextButton.leadingAnchor.constraint(equalTo: container.leadingAnchor),
             addTextButton.trailingAnchor.constraint(equalTo: addImageButton.leadingAnchor),
-        
+            
             addImageButton.leadingAnchor.constraint(equalTo: addTextButton.trailingAnchor),
             addImageButton.topAnchor.constraint(equalTo: container.topAnchor),
             addImageButton.bottomAnchor.constraint(equalTo: container.bottomAnchor),
             addImageButton.trailingAnchor.constraint(equalTo: container.trailingAnchor)
         ])
-
+        
         NSLayoutConstraint.activate([
             trash.widthAnchor.constraint(equalToConstant: 44),
             trash.heightAnchor.constraint(equalTo: trash.widthAnchor),
@@ -153,6 +154,7 @@ final class EditorView: UIView {
         enableDragging(newImageView)
         newImageView.image = image
         newImageView.center = imageView.center
+        newImageView.backgroundColor = UIColor.clear
         addSubview(newImageView)
     }
     
@@ -164,9 +166,16 @@ final class EditorView: UIView {
         enableDragging(label)
         label.backgroundColor = UIColor.clear
         label.numberOfLines = 0
-        label.textColor = UIColor.black
-        label.font = UIFont.systemFont(ofSize: 27, weight: .semibold)
-        label.attributedText = text
+        label.textAlignment = .center
+        label.font = UIFontMetrics.default.scaledFont(for: Constants.impactFont!)
+        label.adjustsFontForContentSizeCategory = true
+        label.attributedText = NSAttributedString(string: text.string,
+                                                  attributes: [
+                                                    NSAttributedString.Key.strokeWidth: -4.0,
+                                                    NSAttributedString.Key.strokeColor: UIColor.black,
+                                                    NSAttributedString.Key.foregroundColor: UIColor.white
+                                                  ])
+        
         label.sizeToFit()
         label.center = imageView.center
         

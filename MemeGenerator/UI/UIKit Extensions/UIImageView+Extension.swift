@@ -11,7 +11,7 @@ extension UIImageView {
     
     func downloadInstagramImage() {
         startSpinner()
-        NetworkService().loadInstagramImage { [weak self] data in
+        NetworkService(session: URLSession.shared).loadInstagramImage { [weak self] data in
             DispatchQueue.main.async {
                 guard let self = self,
                       let data = data else { return }
@@ -23,7 +23,7 @@ extension UIImageView {
     
     func downloadFullImageFromServer(by nameURL: String) {
         startSpinner()
-        NetworkService().loadMemeImage(imageURL: nameURL, thumb: false) { [weak self] data in
+        NetworkService(session: URLSession.shared).loadMemeImage(imageURL: nameURL, thumb: false) { [weak self] data in
             DispatchQueue.main.async {
                 guard let self = self,
                       let data = data else { return }
@@ -35,7 +35,7 @@ extension UIImageView {
     
     func downloadThumbImageFromServer(by nameURL: String) {
         startSpinner()
-        NetworkService().loadMemeImage(imageURL: nameURL, thumb: true) { [weak self] data in
+        NetworkService(session: URLSession.shared).loadMemeImage(imageURL: nameURL, thumb: true) { [weak self] data in
             DispatchQueue.main.async {
                 guard let self = self,
                       let data = data else { return }

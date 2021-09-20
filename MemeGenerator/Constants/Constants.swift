@@ -8,9 +8,9 @@
 import UIKit
 
 enum Constants {
-    static let defaultBackgroundColor = UIColor.systemBackground
     static let collectionCellInset: CGFloat = 3.0
     static let cornerRadius: CGFloat = 5
+    static let impactFont = UIFont(name: "Impact", size: UIFont.labelFontSize + 20)
 }
 
 enum MemesAPI {

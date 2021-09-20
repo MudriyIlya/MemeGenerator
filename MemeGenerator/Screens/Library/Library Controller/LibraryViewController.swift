@@ -41,10 +41,13 @@ final class LibraryViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.Palette.backgroundColor
         title = "Твои мемасики"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "paintbrush"),
-                                                           style: .plain,
-                                                           target: self,
-                                                           action: #selector(openSettings))
+        let item = UIBarButtonItem(image: UIImage(systemName: "paintbrush"),
+                                  style: .plain,
+                                  target: self,
+                                  action: #selector(openSettings))
+        item.accessibilityIdentifier = "settingsButton"
+        navigationItem.leftBarButtonItem = item
+        navigationController?.navigationBar.accessibilityIdentifier = "navigationBar"
     }
     
     override func viewWillAppear(_ animated: Bool) {

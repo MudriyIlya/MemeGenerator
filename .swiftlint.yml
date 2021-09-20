@@ -63,3 +63,4 @@ cyclomatic_complexity:
 excluded:
   - Carthage
   - Pods
+  - 

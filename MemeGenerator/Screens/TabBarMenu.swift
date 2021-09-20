@@ -36,5 +36,4 @@ class TabBarMenu: UITabBarController {
         rootViewController.title = title
         return navigationController
     }
-    
 }

@@ -48,9 +48,10 @@ struct MemesCollection {
         guard let memesFromCategory = allMemes[category.current] else { return nil }
         if index < memesFromCategory.count {
             return memesFromCategory[index]
-        } else {
+        }
+//        } else {
             return nil
-        }   
+//        }   
     }
     
     mutating func removeAll() {

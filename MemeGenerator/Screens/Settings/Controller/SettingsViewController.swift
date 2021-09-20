@@ -37,6 +37,7 @@ final class SettingsViewController: UIViewController {
     private lazy var instagramImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.accessibilityIdentifier = "InstagramImage"
         imageView.layer.cornerRadius = AboutAuthor.width / 2
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
@@ -47,6 +48,7 @@ final class SettingsViewController: UIViewController {
     private lazy var instagramLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.accessibilityIdentifier = "InstagramLabel"
         label.layer.cornerRadius = Constants.cornerRadius
         label.layer.masksToBounds = true
         label.textAlignment = .center
