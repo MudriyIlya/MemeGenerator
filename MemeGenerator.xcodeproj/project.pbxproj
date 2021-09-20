@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -123,6 +123,27 @@
 		A2B1899F26F76DA00014C337 /* PreviewMeme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B1899E26F76DA00014C337 /* PreviewMeme.swift */; };
 		A2B189A026F76DA00014C337 /* PreviewMeme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B1899E26F76DA00014C337 /* PreviewMeme.swift */; };
 		A2B189A126F76DA00014C337 /* PreviewMeme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B1899E26F76DA00014C337 /* PreviewMeme.swift */; };
+		A2B189AD26F7F7080014C337 /* Impacted.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2B189AA26F7F7080014C337 /* Impacted.ttf */; };
+		A2B189AE26F7F7080014C337 /* impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2B189AB26F7F7080014C337 /* impact.ttf */; };
+		A2B189AF26F7F7080014C337 /* unicode.impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2B189AC26F7F7080014C337 /* unicode.impact.ttf */; };
+		A2B189B026F88D7F0014C337 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26632FA26F504050036EEB7 /* StorageService.swift */; };
+		A2B189B126F88D800014C337 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26632FA26F504050036EEB7 /* StorageService.swift */; };
+		A2B189B326F88F860014C337 /* PreviewMemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B189B226F88F860014C337 /* PreviewMemeTests.swift */; };
+		A2B189B526F899BF0014C337 /* ConstantsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B189B426F899BF0014C337 /* ConstantsTests.swift */; };
+		A2B189B726F89C7F0014C337 /* NetworkServiceErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B189B626F89C7F0014C337 /* NetworkServiceErrorTests.swift */; };
+		A2B189B926F89EB70014C337 /* HTTPMethodsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B189B826F89EB70014C337 /* HTTPMethodsTests.swift */; };
+		A2B189BB26F8A3120014C337 /* StorageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B189BA26F8A3120014C337 /* StorageServiceTests.swift */; };
+		A2B189BD26F8A6140014C337 /* CoreDataServiceErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B189BC26F8A6140014C337 /* CoreDataServiceErrorTests.swift */; };
+		A2B189BF26F8A7F10014C337 /* NetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B189BE26F8A7F10014C337 /* NetworkServiceTests.swift */; };
+		A2B189C426F8ABC10014C337 /* CGFloatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B189C326F8ABC10014C337 /* CGFloatTests.swift */; };
+		A2B189C626F8AC9C0014C337 /* UIColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B189C526F8AC9C0014C337 /* UIColorTests.swift */; };
+		A2B189C826F8B4E50014C337 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B189C726F8B4E50014C337 /* SettingsScreen.swift */; };
+		A2BA6ADC26F8CBB900B16141 /* LibraryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BA6ADB26F8CBB900B16141 /* LibraryScreen.swift */; };
+		A2BA6ADE26F8CBF200B16141 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BA6ADD26F8CBF200B16141 /* Page.swift */; };
+		A2BA6AE026F8D7FA00B16141 /* MocksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BA6ADF26F8D7FA00B16141 /* MocksTests.swift */; };
+		A2BA6AE226F8ECEF00B16141 /* json.txt in Resources */ = {isa = PBXBuildFile; fileRef = A2BA6AE126F8ECEF00B16141 /* json.txt */; };
+		A2BA6AE726F8FF3800B16141 /* SnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BA6AE626F8FF3800B16141 /* SnapshotTests.swift */; };
+		A2BA6AEA26F90DCD00B16141 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = A2BA6AE926F90DCD00B16141 /* SnapshotTesting */; };
 		A2DA8D2C26E2631F004387F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA8D2B26E2631F004387F4 /* AppDelegate.swift */; };
 		A2DA8D2E26E2631F004387F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA8D2D26E2631F004387F4 /* SceneDelegate.swift */; };
 		A2DA8D3726E26323004387F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2DA8D3626E26323004387F4 /* Assets.xcassets */; };
@@ -195,6 +216,24 @@
 		A2A7566826ED2EC000578F92 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		A2A7567026ED2FAD00578F92 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		A2B1899E26F76DA00014C337 /* PreviewMeme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMeme.swift; sourceTree = "<group>"; };
+		A2B189AA26F7F7080014C337 /* Impacted.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impacted.ttf; sourceTree = "<group>"; };
+		A2B189AB26F7F7080014C337 /* impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = impact.ttf; sourceTree = "<group>"; };
+		A2B189AC26F7F7080014C337 /* unicode.impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = unicode.impact.ttf; sourceTree = "<group>"; };
+		A2B189B226F88F860014C337 /* PreviewMemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMemeTests.swift; sourceTree = "<group>"; };
+		A2B189B426F899BF0014C337 /* ConstantsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsTests.swift; sourceTree = "<group>"; };
+		A2B189B626F89C7F0014C337 /* NetworkServiceErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceErrorTests.swift; sourceTree = "<group>"; };
+		A2B189B826F89EB70014C337 /* HTTPMethodsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethodsTests.swift; sourceTree = "<group>"; };
+		A2B189BA26F8A3120014C337 /* StorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceTests.swift; sourceTree = "<group>"; };
+		A2B189BC26F8A6140014C337 /* CoreDataServiceErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServiceErrorTests.swift; sourceTree = "<group>"; };
+		A2B189BE26F8A7F10014C337 /* NetworkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTests.swift; sourceTree = "<group>"; };
+		A2B189C326F8ABC10014C337 /* CGFloatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatTests.swift; sourceTree = "<group>"; };
+		A2B189C526F8AC9C0014C337 /* UIColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorTests.swift; sourceTree = "<group>"; };
+		A2B189C726F8B4E50014C337 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		A2BA6ADB26F8CBB900B16141 /* LibraryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryScreen.swift; sourceTree = "<group>"; };
+		A2BA6ADD26F8CBF200B16141 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		A2BA6ADF26F8D7FA00B16141 /* MocksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocksTests.swift; sourceTree = "<group>"; };
+		A2BA6AE126F8ECEF00B16141 /* json.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = json.txt; sourceTree = "<group>"; };
+		A2BA6AE626F8FF3800B16141 /* SnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotTests.swift; sourceTree = "<group>"; };
 		A2DA8D2826E2631F004387F4 /* MemeGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2DA8D2B26E2631F004387F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2DA8D2D26E2631F004387F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -230,6 +269,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2BA6AEA26F90DCD00B16141 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +427,7 @@
 			isa = PBXGroup;
 			children = (
 				A2DA8D3626E26323004387F4 /* Assets.xcassets */,
+				A2B189A926F7F7080014C337 /* Impact-Font */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -519,6 +560,37 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		A2B189A926F7F7080014C337 /* Impact-Font */ = {
+			isa = PBXGroup;
+			children = (
+				A2B189AA26F7F7080014C337 /* Impacted.ttf */,
+				A2B189AB26F7F7080014C337 /* impact.ttf */,
+				A2B189AC26F7F7080014C337 /* unicode.impact.ttf */,
+			);
+			path = "Impact-Font";
+			sourceTree = "<group>";
+		};
+		A2B189C026F8A8DA0014C337 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A2A7565E26EBA48F00578F92 /* MemesCollectionTests.swift */,
+				A2B189B226F88F860014C337 /* PreviewMemeTests.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A2B189C226F8A8F70014C337 /* Network Service */ = {
+			isa = PBXGroup;
+			children = (
+				A2BA6ADF26F8D7FA00B16141 /* MocksTests.swift */,
+				A2B189BE26F8A7F10014C337 /* NetworkServiceTests.swift */,
+				A2B189B626F89C7F0014C337 /* NetworkServiceErrorTests.swift */,
+				A2B189B826F89EB70014C337 /* HTTPMethodsTests.swift */,
+				A2BA6AE126F8ECEF00B16141 /* json.txt */,
+			);
+			path = "Network Service";
+			sourceTree = "<group>";
+		};
 		A2DA8D1F26E2631F004387F4 = {
 			isa = PBXGroup;
 			children = (
@@ -561,7 +633,13 @@
 			isa = PBXGroup;
 			children = (
 				A2DA8D4426E26324004387F4 /* MemeGeneratorTests.swift */,
-				A2A7565E26EBA48F00578F92 /* MemesCollectionTests.swift */,
+				A2B189B426F899BF0014C337 /* ConstantsTests.swift */,
+				A2B189C026F8A8DA0014C337 /* Models */,
+				A2B189BA26F8A3120014C337 /* StorageServiceTests.swift */,
+				A2B189BC26F8A6140014C337 /* CoreDataServiceErrorTests.swift */,
+				A2B189C326F8ABC10014C337 /* CGFloatTests.swift */,
+				A2B189C526F8AC9C0014C337 /* UIColorTests.swift */,
+				A2B189C226F8A8F70014C337 /* Network Service */,
 				A2DA8D4626E26324004387F4 /* Info.plist */,
 			);
 			path = MemeGeneratorTests;
@@ -571,7 +649,11 @@
 			isa = PBXGroup;
 			children = (
 				A2DA8D4F26E26324004387F4 /* MemeGeneratorUITests.swift */,
+				A2BA6ADD26F8CBF200B16141 /* Page.swift */,
+				A2BA6ADB26F8CBB900B16141 /* LibraryScreen.swift */,
+				A2B189C726F8B4E50014C337 /* SettingsScreen.swift */,
 				A2DA8D5126E26324004387F4 /* Info.plist */,
+				A2BA6AE626F8FF3800B16141 /* SnapshotTests.swift */,
 			);
 			path = MemeGeneratorUITests;
 			sourceTree = "<group>";
@@ -593,6 +675,8 @@
 			dependencies = (
 			);
 			name = MemeGenerator;
+			packageProductDependencies = (
+			);
 			productName = MemeGenerator;
 			productReference = A2DA8D2826E2631F004387F4 /* MemeGenerator.app */;
 			productType = "com.apple.product-type.application";
@@ -629,6 +713,9 @@
 				A2DA8D4D26E26324004387F4 /* PBXTargetDependency */,
 			);
 			name = MemeGeneratorUITests;
+			packageProductDependencies = (
+				A2BA6AE926F90DCD00B16141 /* SnapshotTesting */,
+			);
 			productName = MemeGeneratorUITests;
 			productReference = A2DA8D4B26E26324004387F4 /* MemeGeneratorUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -663,6 +750,9 @@
 				Base,
 			);
 			mainGroup = A2DA8D1F26E2631F004387F4;
+			packageReferences = (
+				A2BA6AE826F90DCD00B16141 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+			);
 			productRefGroup = A2DA8D2926E2631F004387F4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -679,7 +769,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2B189AD26F7F7080014C337 /* Impacted.ttf in Resources */,
+				A2B189AF26F7F7080014C337 /* unicode.impact.ttf in Resources */,
 				A2DA8D6626E28417004387F4 /* ToDo.md in Resources */,
+				A2B189AE26F7F7080014C337 /* impact.ttf in Resources */,
 				A2DA8D6426E283E6004387F4 /* .swiftlint.yml in Resources */,
 				A2DA8D3726E26323004387F4 /* Assets.xcassets in Resources */,
 				A2DA8D3A26E26323004387F4 /* LaunchScreen.storyboard in Resources */,
@@ -690,6 +783,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2BA6AE226F8ECEF00B16141 /* json.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -779,14 +873,19 @@
 				A2A755E126E94D2E00578F92 /* NetworkServiceProtocol.swift in Sources */,
 				A2A755E926E94E7A00578F92 /* NetworkServiceError.swift in Sources */,
 				A25FE83926F0CE69006D7808 /* UIWindow+Extension.swift in Sources */,
+				A2B189B526F899BF0014C337 /* ConstantsTests.swift in Sources */,
 				A29F87C926F4A2FE00B37D1A /* CoreDataServiceProtocol.swift in Sources */,
 				A2A755F626EA2ED000578F92 /* UIViewController+Extension.swift in Sources */,
 				A2A755DC26E9443600578F92 /* UIView+Extension.swift in Sources */,
 				A29F87DD26F4B35900B37D1A /* DBMeme+CoreDataClass.swift in Sources */,
 				A25FE80A26EE13E7006D7808 /* EditorView.swift in Sources */,
 				A2DA8D5D26E263CE004387F4 /* AppDelegate.swift in Sources */,
+				A2B189B926F89EB70014C337 /* HTTPMethodsTests.swift in Sources */,
 				A2DA8D4526E26324004387F4 /* MemeGeneratorTests.swift in Sources */,
+				A2B189C626F8AC9C0014C337 /* UIColorTests.swift in Sources */,
+				A2B189BB26F8A3120014C337 /* StorageServiceTests.swift in Sources */,
 				A2A755CF26E91C7E00578F92 /* Meme.swift in Sources */,
+				A2B189B726F89C7F0014C337 /* NetworkServiceErrorTests.swift in Sources */,
 				A2A7565F26EBA48F00578F92 /* MemesCollectionTests.swift in Sources */,
 				A2A7566226ECDD8D00578F92 /* UIImageView+Extension.swift in Sources */,
 				A26632F826F4E1090036EEB7 /* TabBarMenu.swift in Sources */,
@@ -806,6 +905,7 @@
 				A25FE82426F0AB81006D7808 /* UIColor+Extension.swift in Sources */,
 				A25FE82026EFDD94006D7808 /* SettingTableViewCell.swift in Sources */,
 				A2A7565D26EB9B2C00578F92 /* TopMemesViewController.swift in Sources */,
+				A2B189B326F88F860014C337 /* PreviewMemeTests.swift in Sources */,
 				A2DA8D5F26E263D3004387F4 /* SceneDelegate.swift in Sources */,
 				A29F87E026F4B35900B37D1A /* DBMeme+CoreDataProperties.swift in Sources */,
 				A25FE83026F0CB2A006D7808 /* Theme.swift in Sources */,
@@ -813,10 +913,15 @@
 				A29F87D126F4A39000B37D1A /* CoreDataServiceError.swift in Sources */,
 				A2A755FE26EA373B00578F92 /* MemesCollection.swift in Sources */,
 				A2B189A026F76DA00014C337 /* PreviewMeme.swift in Sources */,
+				A2B189C426F8ABC10014C337 /* CGFloatTests.swift in Sources */,
+				A2B189B026F88D7F0014C337 /* StorageService.swift in Sources */,
 				A25FE81526EFD285006D7808 /* SettingsViewController.swift in Sources */,
 				A29F87D826F4B2F200B37D1A /* Memes.xcdatamodeld in Sources */,
 				A2A755ED26E950E200578F92 /* NetworkService.swift in Sources */,
+				A2B189BF26F8A7F10014C337 /* NetworkServiceTests.swift in Sources */,
+				A2BA6AE026F8D7FA00B16141 /* MocksTests.swift in Sources */,
 				A2A755D326E93FCC00578F92 /* Constants.swift in Sources */,
+				A2B189BD26F8A6140014C337 /* CoreDataServiceErrorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -837,6 +942,8 @@
 				A2B189A126F76DA00014C337 /* PreviewMeme.swift in Sources */,
 				A25FE82526F0AB81006D7808 /* UIColor+Extension.swift in Sources */,
 				A2A755D026E91C7E00578F92 /* Meme.swift in Sources */,
+				A2B189B126F88D800014C337 /* StorageService.swift in Sources */,
+				A2BA6ADE26F8CBF200B16141 /* Page.swift in Sources */,
 				A25FE81626EFD285006D7808 /* SettingsViewController.swift in Sources */,
 				A25FE82126EFDD94006D7808 /* SettingTableViewCell.swift in Sources */,
 				A29F87D926F4B2F200B37D1A /* Memes.xcdatamodeld in Sources */,
@@ -847,9 +954,11 @@
 				A25FE83126F0CB2A006D7808 /* Theme.swift in Sources */,
 				A2A7567326ED2FAD00578F92 /* Preview.swift in Sources */,
 				A2A755C326E8CAAE00578F92 /* MemeCell.swift in Sources */,
+				A2BA6AE726F8FF3800B16141 /* SnapshotTests.swift in Sources */,
 				A2A7562026EA489B00578F92 /* Category.swift in Sources */,
 				A29F87DE26F4B35900B37D1A /* DBMeme+CoreDataClass.swift in Sources */,
 				A2A755BF26E8CAA400578F92 /* LibraryViewController.swift in Sources */,
+				A2BA6ADC26F8CBB900B16141 /* LibraryScreen.swift in Sources */,
 				A29F87E126F4B35900B37D1A /* DBMeme+CoreDataProperties.swift in Sources */,
 				A25FE82D26F0C976006D7808 /* Persist.swift in Sources */,
 				A2A7565C26EB9B2C00578F92 /* TopMemesViewController.swift in Sources */,
@@ -860,6 +969,7 @@
 				A2A755FF26EA373B00578F92 /* MemesCollection.swift in Sources */,
 				A29F87D226F4A39000B37D1A /* CoreDataServiceError.swift in Sources */,
 				A2A755EE26E950E200578F92 /* NetworkService.swift in Sources */,
+				A2B189C826F8B4E50014C337 /* SettingsScreen.swift in Sources */,
 				A2A7566B26ED2EC000578F92 /* EditViewController.swift in Sources */,
 				A26632F926F4E1090036EEB7 /* TabBarMenu.swift in Sources */,
 				A29F87CA26F4A2FE00B37D1A /* CoreDataServiceProtocol.swift in Sources */,
@@ -950,6 +1060,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1004,6 +1115,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -1171,6 +1283,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A2BA6AE826F90DCD00B16141 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A2BA6AE926F90DCD00B16141 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A2BA6AE826F90DCD00B16141 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		A29F87D526F4B2F200B37D1A /* Memes.xcdatamodeld */ = {

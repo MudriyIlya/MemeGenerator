@@ -9,7 +9,7 @@ import Foundation
 
 final class NetworkService {
     
-    private let session = URLSession.shared
+    private let session: NetworkServiceTest
     
     private let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -18,6 +18,10 @@ final class NetworkService {
     }()
     
     private var memesResponse: [MemeDataResponse]?
+    
+    init(session: NetworkServiceTest) {
+            self.session = session
+    }
 }
 
 extension NetworkService: NetworkServiceProtocol {

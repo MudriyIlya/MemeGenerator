@@ -1,0 +1,10 @@
+[{
+ "id": "AE3ADEBE-529D-459B-BB0A-1E8180E8C93E",
+ "category": "Cats",
+ "imageURL": "cat03.png"
+ },
+ {
+ "id": "53349B9C-3F45-4FE2-85D7-80EEB2A65E5D",
+ "category": "Cartoon",
+ "imageURL": "cartoon05.png"
+}]
