@@ -1,4 +1,4 @@
-<img src="https://github.com/MudriyIlya/MemeGenerator/blob/main/Pics/project_map.png" width="480"/>
+<img src="https://github.com/MudriyIlya/MemeGenerator/blob/main/Pics/project_map.png" width="720"/>
 
 # Meme Generator
 
